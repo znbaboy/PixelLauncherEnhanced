@@ -2,6 +2,7 @@ package com.drdisagree.pixellauncherenhanced.xposed
 
 import com.drdisagree.pixellauncherenhanced.data.common.Constants.LAUNCHER3_PACKAGE
 import com.drdisagree.pixellauncherenhanced.data.common.Constants.PIXEL_LAUNCHER_PACKAGE
+import com.drdisagree.pixellauncherenhanced.xposed.mods.DrawerSearchbar
 import com.drdisagree.pixellauncherenhanced.xposed.mods.LauncherSettings
 import com.drdisagree.pixellauncherenhanced.xposed.mods.GestureMod
 import com.drdisagree.pixellauncherenhanced.xposed.mods.HideStatusbar
@@ -33,7 +34,8 @@ object EntryList {
         HideStatusbar::class.java,
         TopShadow::class.java,
         LauncherSettings::class.java,
-        LockLayout::class.java
+        LockLayout::class.java,
+        DrawerSearchbar::class.java
     )
 
     fun getEntries(packageName: String): ArrayList<Class<out ModPack>> {

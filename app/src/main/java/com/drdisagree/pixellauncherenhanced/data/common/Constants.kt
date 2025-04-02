@@ -37,6 +37,7 @@ object Constants {
     const val DEVELOPER_OPTIONS = "xposed_developeroptions"
     const val ENTRY_IN_LAUNCHER_SETTINGS = "xposed_entryinlaunchersettings"
     const val LOCK_LAYOUT = "xposed_locklayout"
+    const val DRAWER_SEARCH_BAR = "xposed_drawersearchbar"
 
     val PREF_UPDATE_EXCLUSIONS = listOf(
         BootLoopProtector.LOAD_TIME_KEY_KEY,

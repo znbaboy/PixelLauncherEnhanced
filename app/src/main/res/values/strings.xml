@@ -51,7 +51,7 @@
     <string name="force_themed_icons_desc">Generate monochromatic icons if not provided by the app</string>
     <string name="launcher_icon_size_title">Icon size</string>
     <string name="launcher_text_size_title">Text size</string>
-    <string name="app_drawer_themed_icons_title">App drawer themed icons</string>
+    <string name="app_drawer_themed_icons_title">Themed icons</string>
     <string name="app_drawer_themed_icons_desc">Enable themed icons on app drawer</string>
     <string name="double_tap_to_sleep_title">Double tap to sleep</string>
     <string name="double_tap_to_sleep_desc">Double tap on home screen empty space to turn off the screen</string>
@@ -80,4 +80,6 @@
     <string name="lock_layout_desc_on">Icons and widgets can\'t be added, removed and moved on the homescreen</string>
     <string name="lock_layout_desc_off">Icons and widgets can be added, removed and moved on the homescreen</string>
     <string name="layout_is_locked">Layout is locked!</string>
+    <string name="drawer_search_title">App search bar</string>
+    <string name="drawer_search_desc">Search bar on top of the app drawer</string>
 </resources>
