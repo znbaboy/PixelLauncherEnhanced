@@ -21,58 +21,59 @@ PixelLauncher Enhanced is an Xposed module designed to unlock a variety of excit
 <details>
 <summary>Icons</summary>
 
-| Feature | Pixel Launcher | Launcher3 Launcher |
-|-|:-:|:-:|
-|Force themed icons|✅|✅|
-|Icon size|✅|✅|
-|Text size|✅|✅|
+| Feature            | Pixel Launcher | Launcher3 Launcher |
+|--------------------|:-:|:-:|
+| Force themed icons |✅|✅|
+| Icon size          |✅|✅|
+| Text size          |✅|✅|
 
 </details>
 
 <details>
 <summary>Home screen</summary>
 
-| Feature | Pixel Launcher | Launcher3 Launcher |
-|-|:-:|:-:|
-|Double tap to sleep|✅|✅|
-|Hide statusbar|✅|✅|
-|Hide top shadow|✅|✅|
-|Icon labels on desktop|✅|✅|
-|Hide At A Glance|✅|✅|
-|Hide desktop search bar|✅|✅|
-|Dock spacing|✅|✅|
+| Feature                 | Pixel Launcher | Launcher3 Launcher |
+|-------------------------|:-:|:-:|
+| Lock layout             |✅|✅|
+| Double tap to sleep     |✅|✅|
+| Hide statusbar          |✅|✅|
+| Hide top shadow         |✅|✅|
+| Icon labels on desktop  |✅|✅|
+| Hide At A Glance        |✅|✅|
+| Hide desktop search bar |✅|✅|
+| Dock spacing            |✅|✅|
 
 </details>
 
 <details>
 <summary>App drawer</summary>
 
-| Feature | Pixel Launcher | Launcher3 Launcher |
-|-|:-:|:-:|
-|App drawer themed icons|✅|✅|
-|Icon labels in app drawer|✅|✅|
-|App drawer background opacity|✅|✅|
+| Feature                       | Pixel Launcher | Launcher3 Launcher |
+|-------------------------------|:-:|:-:|
+| App drawer themed icons       |✅|✅|
+| Icon labels in app drawer     |✅|✅|
+| App drawer background opacity |✅|✅|
 
 </details>
 
 <details>
 <summary>Recents</summary>
 
-| Feature | Pixel Launcher | Launcher3 Launcher |
-|-|:-:|:-:|
-|Disable recents live tile|✅|✅|
-|Recents background opacity|✅|✅|
+| Feature                    | Pixel Launcher | Launcher3 Launcher |
+|----------------------------|:-:|:-:|
+| Disable recents live tile  |✅|✅|
+| Recents background opacity |✅|✅|
 
 </details>
 
 <details>
 <summary>Miscellaneous</summary>
 
-| Feature | Pixel Launcher | Launcher3 Launcher |
-|-|:-:|:-:|
-|Show entry in launcher settings|✅|✅|
-|Developer options|✅|🚫|
-|Restart|✅|✅|
+| Feature                          | Pixel Launcher | Launcher3 Launcher |
+|----------------------------------|:-:|:-:|
+| Show entry in launcher settings |✅|✅|
+| Developer options                |✅|🚫|
+| Restart                          |✅|✅|
 
 </details>
 
