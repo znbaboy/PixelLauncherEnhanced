@@ -50,7 +50,7 @@ class About : Fragment() {
         )
         binding.btnNews.setOnClickListener { openUrl("https://t.me/DrDsProjects") }
         binding.btnSupport.setOnClickListener { openUrl("https://t.me/DrDsProjectsChat") }
-        binding.btnGithub.setOnClickListener { openUrl("https://github.com/Mahmud0808/ColorBlendr") }
+        binding.btnGithub.setOnClickListener { openUrl("https://github.com/Mahmud0808/PixelLauncherEnhanced") }
         binding.developer.setOnClickListener { openUrl("https://github.com/Mahmud0808") }
         binding.buymeacoffee.setOnClickListener { openUrl("https://buymeacoffee.com/drdisagree") }
 
