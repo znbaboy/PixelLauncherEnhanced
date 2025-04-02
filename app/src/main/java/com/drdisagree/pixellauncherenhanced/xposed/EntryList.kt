@@ -2,6 +2,7 @@ package com.drdisagree.pixellauncherenhanced.xposed
 
 import com.drdisagree.pixellauncherenhanced.data.common.Constants.LAUNCHER3_PACKAGE
 import com.drdisagree.pixellauncherenhanced.data.common.Constants.PIXEL_LAUNCHER_PACKAGE
+import com.drdisagree.pixellauncherenhanced.xposed.mods.ClearAllButton
 import com.drdisagree.pixellauncherenhanced.xposed.mods.DrawerSearchbar
 import com.drdisagree.pixellauncherenhanced.xposed.mods.LauncherSettings
 import com.drdisagree.pixellauncherenhanced.xposed.mods.GestureMod
@@ -35,7 +36,8 @@ object EntryList {
         TopShadow::class.java,
         LauncherSettings::class.java,
         LockLayout::class.java,
-        DrawerSearchbar::class.java
+        DrawerSearchbar::class.java,
+        ClearAllButton::class.java
     )
 
     fun getEntries(packageName: String): ArrayList<Class<out ModPack>> {
