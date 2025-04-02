@@ -10,6 +10,13 @@
 
     <com.drdisagree.pixellauncherenhanced.ui.preferences.SwitchPreference
         android:defaultValue="true"
+        android:key="xposed_drawersearchbar"
+        android:summary="@string/drawer_search_desc"
+        android:title="@string/drawer_search_title"
+        app:iconSpaceReserved="false" />
+
+    <com.drdisagree.pixellauncherenhanced.ui.preferences.SwitchPreference
+        android:defaultValue="true"
         android:key="xposed_appdrawericonlabels"
         android:title="@string/app_drawer_icon_labels_title"
         app:iconSpaceReserved="false" />

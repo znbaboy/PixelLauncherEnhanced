@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.drdisagree.pixellauncherenhanced.ui.preferences.SwitchPreference
+        android:key="xposed_locklayout"
+        android:summaryOff="@string/lock_layout_desc_off"
+        android:summaryOn="@string/lock_layout_desc_on"
+        android:title="@string/lock_layout_title"
+        app:iconSpaceReserved="false" />
+
+    <com.drdisagree.pixellauncherenhanced.ui.preferences.SwitchPreference
         android:key="xposed_doubletaptosleep"
         android:summary="@string/double_tap_to_sleep_desc"
         android:title="@string/double_tap_to_sleep_title"

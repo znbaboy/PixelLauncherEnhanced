@@ -25,6 +25,15 @@
     <string name="xposed_module_bootlooped_desc">Module has been disabled</string>
     <string name="force_close_launcher">Force close launcher</string>
 
+    <string name="version_codes" translatable="false">%s (#%d)</string>
+    <string name="news">News</string>
+    <string name="support">Support</string>
+    <string name="github">GitHub</string>
+    <string name="dev_name" translatable="false">DrDisagree</string>
+    <string name="dev_bio">Learner | Developer | Designer</string>
+    <string name="buymeacoffee_title">Enjoying this app?</string>
+    <string name="buymeacoffee_desc">Consider buying me a coffee</string>
+
     <string name="fragment_icons_title">Icons</string>
     <string name="fragment_icons_desc">Set icon size and more</string>
     <string name="fragment_home_screen_title">Home screen</string>
@@ -42,7 +51,7 @@
     <string name="force_themed_icons_desc">Generate monochromatic icons if not provided by the app</string>
     <string name="launcher_icon_size_title">Icon size</string>
     <string name="launcher_text_size_title">Text size</string>
-    <string name="app_drawer_themed_icons_title">App drawer themed icons</string>
+    <string name="app_drawer_themed_icons_title">Themed icons</string>
     <string name="app_drawer_themed_icons_desc">Enable themed icons on app drawer</string>
     <string name="double_tap_to_sleep_title">Double tap to sleep</string>
     <string name="double_tap_to_sleep_desc">Double tap on home screen empty space to turn off the screen</string>
@@ -67,4 +76,12 @@
     <string name="developer_options_title">Developer options</string>
     <string name="developer_options_desc">Enable hidden developer options</string>
     <string name="entry_in_launcher_settings">Show entry in launcher settings</string>
+    <string name="lock_layout_title">Lock layout</string>
+    <string name="lock_layout_desc_on">Icons and widgets can\'t be added, removed and moved on the homescreen</string>
+    <string name="lock_layout_desc_off">Icons and widgets can be added, removed and moved on the homescreen</string>
+    <string name="layout_is_locked">Layout is locked!</string>
+    <string name="drawer_search_title">App search bar</string>
+    <string name="drawer_search_desc">Search bar on top of the app drawer</string>
+    <string name="clear_all_button_title">Clear all button</string>
+    <string name="recents_clear_all">Clear all</string>
 </resources>
