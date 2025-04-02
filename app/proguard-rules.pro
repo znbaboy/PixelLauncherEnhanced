@@ -16,6 +16,10 @@
     public static ** valueOf(java.lang.String);
 }
 
+# Activity and Fragment names
+-keep class com.drdisagree.pixellauncherenhanced.ui.activities.**
+-keep class com.drdisagree.pixellauncherenhanced.ui.fragments.**
+
 # Xposed
 -keep class de.robv.android.xposed.**
 -keep class com.drdisagree.pixellauncherenhanced.xposed.InitHook
