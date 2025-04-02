@@ -44,6 +44,7 @@ class LauncherSettings(context: Context) : ModPack(context) {
             "com.android.launcher3.SettingsActivity\$LauncherSettingsFragment",
             "com.android.launcher3.settings.SettingsActivity\$LauncherSettingsFragment"
         )
+        val featureFlagsClass = findClass("com.android.launcher3.config.FeatureFlags")
 
         if (mContext.packageName == PIXEL_LAUNCHER_PACKAGE) {
             launcherSettingsFragmentClass
@@ -56,6 +57,13 @@ class LauncherSettings(context: Context) : ModPack(context) {
                     if (key == "pref_developer_options") {
                         param.result = devOptionsEnabled
                     }
+                }
+
+            featureFlagsClass
+                .hookMethod("showFlagTogglerUi")
+                .suppressError()
+                .runBefore { param ->
+                    param.result = devOptionsEnabled
                 }
         }
 
