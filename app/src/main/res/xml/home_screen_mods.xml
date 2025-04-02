@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.drdisagree.pixellauncherenhanced.ui.preferences.SwitchPreference
+        android:key="xposed_doubletaptosleep"
+        android:summary="@string/double_tap_to_sleep_desc"
+        android:title="@string/double_tap_to_sleep_title"
+        app:iconSpaceReserved="false" />
+
+    <com.drdisagree.pixellauncherenhanced.ui.preferences.SwitchPreference
+        android:defaultValue="false"
+        android:key="xposed_launcherhidestatusbar"
+        android:summary="@string/hide_launcher_statusbar_desc"
+        android:title="@string/hide_launcher_statusbar_title"
+        app:iconSpaceReserved="false" />
+
+    <com.drdisagree.pixellauncherenhanced.ui.preferences.SwitchPreference
+        android:defaultValue="false"
+        android:key="xposed_launcherhidetopshadow"
+        android:summary="@string/hide_launcher_top_shadow_desc"
+        android:title="@string/hide_launcher_top_shadow_title"
+        app:iconSpaceReserved="false" />
+
+    <com.drdisagree.pixellauncherenhanced.ui.preferences.SwitchPreference
+        android:defaultValue="true"
+        android:key="xposed_desktopiconlabels"
+        android:title="@string/desktop_icon_labels_title"
+        app:iconSpaceReserved="false" />
+
+    <com.drdisagree.pixellauncherenhanced.ui.preferences.SwitchPreference
+        android:key="xposed_hideataglance"
+        android:summary="@string/hide_at_a_glance_desc"
+        android:title="@string/hide_at_a_glance_title"
+        app:iconSpaceReserved="false" />
+
+    <com.drdisagree.pixellauncherenhanced.ui.preferences.SwitchPreference
+        android:key="xposed_desktopsearchbar"
+        android:summary="@string/hide_desktop_search_bar_desc"
+        android:title="@string/hide_desktop_search_bar_title"
+        app:iconSpaceReserved="false" />
+
+    <com.drdisagree.pixellauncherenhanced.ui.preferences.SliderPreference
+        android:key="xposed_desktopdockspacing"
+        android:title="@string/dock_spacing_title"
+        app:defaultValue="-1"
+        app:iconSpaceReserved="false"
+        app:maxVal="260"
+        app:minVal="-1"
+        app:showDefaultIndicator="true"
+        app:showResetButton="true"
+        app:tickInterval="1"
+        app:valueFormat="dp" />
+
+</PreferenceScreen>

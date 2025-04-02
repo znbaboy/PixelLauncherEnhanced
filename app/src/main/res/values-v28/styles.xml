@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="MaterialComponents.MaterialAlertDialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="android:background">?attr/colorSurfaceContainer</item>
+        <item name="android:dialogCornerRadius">24dp</item>
+        <item name="materialAlertDialogTitleTextStyle">@style/MaterialAlertDialog.Title.Text
+        </item>
+        <item name="materialAlertDialogBodyTextStyle">@style/MaterialAlertDialog.Body.Text
+        </item>
+        <item name="buttonBarPositiveButtonStyle">@style/MaterialAlertDialog.Button.Text
+        </item>
+        <item name="buttonBarNegativeButtonStyle">@style/MaterialAlertDialog.Button.Text
+        </item>
+        <item name="android:backgroundDimAmount">0.6</item>
+    </style>
+
+</resources>
