@@ -60,4 +60,5 @@ dependencies {
     compileOnly(libs.xposedbridge)
     implementation(libs.jaredrummler.colorpicker)
     implementation(libs.remotepreferences)
+    implementation(libs.circleimageview)
 }
