@@ -679,6 +679,12 @@ fun Any?.callMethod(methodName: String, vararg args: Any?): Any? {
     return XposedHelpers.callMethod(this, methodName, *args)
 }
 
+fun Any?.callMethod(methodName: String, parameterTypes: Array<Class<*>>, vararg args: Any?): Any? {
+    if (this == null) return null
+
+    return XposedHelpers.callMethod(this, methodName, parameterTypes, *args)
+}
+
 fun Any?.callMethodSilently(methodName: String): Any? {
     if (this == null) return null
 
@@ -699,6 +705,20 @@ fun Any?.callMethodSilently(methodName: String, vararg args: Any?): Any? {
     }
 }
 
+fun Any?.callMethodSilently(
+    methodName: String,
+    parameterTypes: Array<Class<*>>,
+    vararg args: Any?
+): Any? {
+    if (this == null) return null
+
+    return try {
+        XposedHelpers.callMethod(this, methodName, parameterTypes, *args)
+    } catch (_: Throwable) {
+        null
+    }
+}
+
 fun Class<*>?.callStaticMethod(methodName: String): Any? {
     if (this == null) return null
 
@@ -709,6 +729,16 @@ fun Class<*>?.callStaticMethod(methodName: String, vararg args: Any?): Any? {
     if (this == null) return null
 
     return XposedHelpers.callStaticMethod(this, methodName, *args)
+}
+
+fun Class<*>?.callStaticMethod(
+    methodName: String,
+    parameterTypes: Array<Class<*>>,
+    vararg args: Any?
+): Any? {
+    if (this == null) return null
+
+    return XposedHelpers.callStaticMethod(this, methodName, parameterTypes, *args)
 }
 
 fun Class<*>?.callStaticMethodSilently(methodName: String): Any? {
@@ -726,6 +756,20 @@ fun Class<*>?.callStaticMethodSilently(methodName: String, vararg args: Any?): A
 
     return try {
         XposedHelpers.callStaticMethod(this, methodName, *args)
+    } catch (_: Throwable) {
+        null
+    }
+}
+
+fun Class<*>?.callStaticMethodSilently(
+    methodName: String,
+    parameterTypes: Array<Class<*>>,
+    vararg args: Any?
+): Any? {
+    if (this == null) return null
+
+    return try {
+        XposedHelpers.callStaticMethod(this, methodName, parameterTypes, *args)
     } catch (_: Throwable) {
         null
     }
