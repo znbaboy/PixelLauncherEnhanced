@@ -62,6 +62,7 @@ PixelLauncher Enhanced is an Xposed module designed to unlock a variety of excit
 
 | Feature                    | Pixel Launcher | Launcher3 Launcher |
 |----------------------------|:-:|:-:|
+| Clear all button           |✅|✅|
 | Disable recents live tile  |✅|✅|
 | Recents background opacity |✅|✅|
 
