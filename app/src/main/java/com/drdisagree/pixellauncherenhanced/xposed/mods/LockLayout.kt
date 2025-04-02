@@ -27,8 +27,8 @@ class LockLayout(context: Context) : ModPack(context) {
         val launcherAppWidgetHostViewClass =
             findClass("com.android.launcher3.widget.LauncherAppWidgetHostView")
         val systemShortcutClass = findClass("com.android.launcher3.popup.SystemShortcut")
-        val popupContainerWithArrowClass =
-            findClass("com.android.launcher3.popup.PopupContainerWithArrow")
+        val launcherPopupItemDragHandlerClass =
+            findClass("com.android.launcher3.popup.PopupContainerWithArrow\$LauncherPopupItemDragHandler")
         val optionsPopupViewClass = findClass("com.android.launcher3.views.OptionsPopupView")
 
         dragControllerClass
@@ -56,7 +56,7 @@ class LockLayout(context: Context) : ModPack(context) {
                 param.result = null
             }
 
-        popupContainerWithArrowClass
+        launcherPopupItemDragHandlerClass
             .hookMethod("onLongClick")
             .runBefore { param ->
                 if (!lockLayout) return@runBefore
