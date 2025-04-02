@@ -50,7 +50,8 @@ PixelLauncher Enhanced is an Xposed module designed to unlock a variety of excit
 
 | Feature                       | Pixel Launcher | Launcher3 Launcher |
 |-------------------------------|:-:|:-:|
-| App drawer themed icons       |✅|✅|
+| Themed icons                  |✅|✅|
+| Toggle app search bar         |✅|✅|
 | Icon labels in app drawer     |✅|✅|
 | App drawer background opacity |✅|✅|
 
