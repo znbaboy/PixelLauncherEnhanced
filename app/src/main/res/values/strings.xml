@@ -83,5 +83,6 @@
     <string name="drawer_search_title">App search bar</string>
     <string name="drawer_search_desc">Search bar on top of the app drawer</string>
     <string name="clear_all_button_title">Clear all button</string>
+    <string name="fixed_button_width_title">Fixed width for each button</string>
     <string name="recents_clear_all">Clear all</string>
 </resources>
