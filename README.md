@@ -5,7 +5,7 @@
 </div>
 
 <p align="center">
-PixelLauncher Enhanced is an Xposed module designed to unlock a variety of exciting features for your launcher. From customizing the look to adding more functionality, this module enhances your launcher experience with minimal effort.
+PixelLauncher Enhanced is an Xposed module designed to unlock a variety of exciting features for your launcher. Even though the name suggests it's for Pixel Launcher, it also fully supports Launcher3. From customizing the look to adding more functionality, this module enhances your launcher experience with minimal effort.
 </p>
 <br>
 <p align="center">
@@ -110,3 +110,8 @@ Root access is a requirement for the following features:
 - Double tap to sleep
 
 - Restart launcher
+
+# 🌍 Translations
+
+Want to help translate PixelLauncher Enhanced into your language? You can contribute translations on
+our [Crowdin platform](https://crowdin.com/project/pixellauncher-enhanced).
