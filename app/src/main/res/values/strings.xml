@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PixelLauncher Enhanced</string>
+    <string name="app_name" translatable="false">PixelLauncher Enhanced</string>
     <string name="app_moto">Unleash the full potential of your launcher</string>
 
     <string name="icon">Icon</string>
@@ -11,7 +11,7 @@
     <string name="opt_selected1" translatable="false">%s</string>
     <string name="opt_selected2" translatable="false">%1$s%2$s</string>
     <string name="opt_selected3" translatable="false">%1$s%2$s %3$s</string>
-    <string name="btn_pick_image">Pick Image</string>
+    <string name="btn_pick_image">Pick image</string>
     <string name="understood">Understood</string>
     <string name="settings_title">Settings</string>
 
@@ -19,9 +19,9 @@
     <string name="root_connection_failed_desc">Unable to connect to root service. Please grant root access and try again.</string>
     <string name="lsposed_warn">Enable this module from LSPosed and force close launcher.</string>
     <string name="lsposed_bootloop_warn">One of the features you enabled is not compatible with this version of launcher. Please disable it and force close launcher.</string>
-    <string name="xposed_module_disabled_title">Module Not Activated</string>
+    <string name="xposed_module_disabled_title">Module not activated</string>
     <string name="xposed_module_disabled_desc">System service not running</string>
-    <string name="xposed_module_bootlooped_title">Bootloop Detected</string>
+    <string name="xposed_module_bootlooped_title">Bootloop detected</string>
     <string name="xposed_module_bootlooped_desc">Module has been disabled</string>
     <string name="force_close_launcher">Force close launcher</string>
 
