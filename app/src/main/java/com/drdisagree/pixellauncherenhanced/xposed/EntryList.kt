@@ -4,13 +4,14 @@ import com.drdisagree.pixellauncherenhanced.data.common.Constants.LAUNCHER3_PACK
 import com.drdisagree.pixellauncherenhanced.data.common.Constants.PIXEL_LAUNCHER_PACKAGE
 import com.drdisagree.pixellauncherenhanced.xposed.mods.ClearAllButton
 import com.drdisagree.pixellauncherenhanced.xposed.mods.DrawerSearchbar
-import com.drdisagree.pixellauncherenhanced.xposed.mods.LauncherSettings
 import com.drdisagree.pixellauncherenhanced.xposed.mods.GestureMod
+import com.drdisagree.pixellauncherenhanced.xposed.mods.HideApps
 import com.drdisagree.pixellauncherenhanced.xposed.mods.HideStatusbar
 import com.drdisagree.pixellauncherenhanced.xposed.mods.HotseatMod
 import com.drdisagree.pixellauncherenhanced.xposed.mods.IconLabels
 import com.drdisagree.pixellauncherenhanced.xposed.mods.IconTextSize
 import com.drdisagree.pixellauncherenhanced.xposed.mods.IconUpdater
+import com.drdisagree.pixellauncherenhanced.xposed.mods.LauncherSettings
 import com.drdisagree.pixellauncherenhanced.xposed.mods.LauncherUtils
 import com.drdisagree.pixellauncherenhanced.xposed.mods.LockLayout
 import com.drdisagree.pixellauncherenhanced.xposed.mods.OpacityModifier
@@ -37,7 +38,8 @@ object EntryList {
         LauncherSettings::class.java,
         LockLayout::class.java,
         DrawerSearchbar::class.java,
-        ClearAllButton::class.java
+        ClearAllButton::class.java,
+        HideApps::class.java
     )
 
     fun getEntries(packageName: String): ArrayList<Class<out ModPack>> {
