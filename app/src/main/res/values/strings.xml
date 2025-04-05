@@ -88,4 +88,5 @@
     <string name="fixed_button_width_title">Fixed width for each button</string>
     <string name="recents_clear_all">Clear all</string>
     <string name="hide_apps_title">Hide apps from app drawer</string>
+    <string name="search_hidden_apps_title">Allow searching for hidden apps</string>
 </resources>

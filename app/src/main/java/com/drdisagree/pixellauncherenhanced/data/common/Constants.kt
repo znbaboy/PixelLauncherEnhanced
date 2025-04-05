@@ -41,6 +41,7 @@ object Constants {
     const val RECENTS_CLEAR_ALL_BUTTON = "xposed_recentsclearallbutton"
     const val FIXED_RECENTS_BUTTONS_WIDTH = "xposed_fixedrecentsbuttonswidth"
     const val APP_BLOCK_LIST = "xposed_appblocklist"
+    const val SEARCH_HIDDEN_APPS = "xposed_searchhiddenapps"
 
     val PREF_UPDATE_EXCLUSIONS = listOf(
         BootLoopProtector.LOAD_TIME_KEY_KEY,
