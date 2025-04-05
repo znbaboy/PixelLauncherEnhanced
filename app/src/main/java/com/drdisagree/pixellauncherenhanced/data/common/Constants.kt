@@ -18,6 +18,7 @@ object Constants {
     const val XPOSED_HOOK_CHECK = "xposed_hook_check"
     const val ACTION_HOOK_CHECK_REQUEST = "${BuildConfig.APPLICATION_ID}.ACTION_HOOK_CHECK_REQUEST"
     const val ACTION_HOOK_CHECK_RESULT = "${BuildConfig.APPLICATION_ID}.ACTION_HOOK_CHECK_RESULT"
+    const val ACTION_APP_LIST_UPDATED = "${BuildConfig.APPLICATION_ID}.ACTION_APP_LIST_UPDATED"
     const val FORCE_THEMED_ICONS = "xposed_forcethemedicons"
     const val APP_DRAWER_THEMED_ICONS = "xposed_appdrawerthemedicons"
     const val APP_DRAWER_BACKGROUND_OPACITY = "xposed_appdrawerbackgroundopacity"

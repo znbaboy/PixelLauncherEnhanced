@@ -1,10 +1,12 @@
 package com.drdisagree.pixellauncherenhanced.ui.fragments
 
+import android.annotation.SuppressLint
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -13,10 +15,10 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.drdisagree.pixellauncherenhanced.PLEnhanced.Companion.appContext
 import com.drdisagree.pixellauncherenhanced.R
+import com.drdisagree.pixellauncherenhanced.data.common.Constants.ACTION_APP_LIST_UPDATED
 import com.drdisagree.pixellauncherenhanced.data.common.Constants.APP_BLOCK_LIST
 import com.drdisagree.pixellauncherenhanced.data.config.RPrefs
 import com.drdisagree.pixellauncherenhanced.data.model.AppInfoModel
@@ -35,9 +37,11 @@ class HiddenApps : Fragment() {
     private var appList: List<AppInfoModel>? = null
     private var adapter: AppListAdapter? = null
 
-    private val packageReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+    private val packageUpdateReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
-            initAppList()
+            if (intent.action == ACTION_APP_LIST_UPDATED) {
+                initAppList()
+            }
         }
     }
     private val textWatcher: TextWatcher = object : TextWatcher {
@@ -159,31 +163,31 @@ class HiddenApps : Fragment() {
         binding.recyclerView.adapter = adapter
     }
 
+    @SuppressLint("UnspecifiedRegisterReceiverFlag")
     override fun onResume() {
         super.onResume()
 
-        val intentFilterWithoutScheme = IntentFilter()
-        intentFilterWithoutScheme.addAction(Intent.ACTION_PACKAGE_ADDED)
-        intentFilterWithoutScheme.addAction(Intent.ACTION_PACKAGE_REMOVED)
+        val intentFilter = IntentFilter().apply {
+            addAction(ACTION_APP_LIST_UPDATED)
+        }
 
-        val intentFilterWithScheme = IntentFilter()
-        intentFilterWithScheme.addAction(Intent.ACTION_PACKAGE_ADDED)
-        intentFilterWithScheme.addAction(Intent.ACTION_PACKAGE_REMOVED)
-        intentFilterWithScheme.addDataScheme("package")
-
-        LocalBroadcastManager
-            .getInstance(requireContext())
-            .registerReceiver(packageReceiver, intentFilterWithoutScheme)
-        LocalBroadcastManager
-            .getInstance(requireContext())
-            .registerReceiver(packageReceiver, intentFilterWithScheme)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            requireContext().registerReceiver(
+                packageUpdateReceiver,
+                intentFilter,
+                Context.RECEIVER_EXPORTED
+            )
+        } else {
+            requireContext().registerReceiver(
+                packageUpdateReceiver,
+                intentFilter
+            )
+        }
     }
 
     override fun onDestroy() {
         try {
-            LocalBroadcastManager
-                .getInstance(requireContext())
-                .unregisterReceiver(packageReceiver)
+            requireContext().unregisterReceiver(packageUpdateReceiver)
         } catch (_: Exception) {
             // Receiver was not registered
         }

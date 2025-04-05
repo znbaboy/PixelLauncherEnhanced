@@ -18,12 +18,12 @@ import com.drdisagree.pixellauncherenhanced.xposed.mods.OpacityModifier
 import com.drdisagree.pixellauncherenhanced.xposed.mods.SmartSpace
 import com.drdisagree.pixellauncherenhanced.xposed.mods.ThemedIcons
 import com.drdisagree.pixellauncherenhanced.xposed.mods.TopShadow
-import com.drdisagree.pixellauncherenhanced.xposed.utils.HookCheck
+import com.drdisagree.pixellauncherenhanced.xposed.utils.BroadcastHook
 
 object EntryList {
 
     private val launcherModPacks: List<Class<out ModPack>> = listOf(
-        HookCheck::class.java,
+        BroadcastHook::class.java,
         LauncherUtils::class.java,
         IconUpdater::class.java,
         ThemedIcons::class.java,
