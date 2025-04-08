@@ -2,7 +2,9 @@ package com.drdisagree.pixellauncherenhanced.xposed.mods
 
 import android.content.Context
 import android.widget.Toast
+import com.drdisagree.pixellauncherenhanced.R
 import com.drdisagree.pixellauncherenhanced.xposed.HookEntry.Companion.enqueueProxyCommand
+import com.drdisagree.pixellauncherenhanced.xposed.HookRes.Companion.modRes
 import com.drdisagree.pixellauncherenhanced.xposed.ModPack
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.XposedHook.Companion.findClass
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.callStaticMethod
@@ -67,7 +69,11 @@ class LauncherUtils(context: Context) : ModPack(context) {
                 lastRestartTime = currentTime
                 resetCounter(context.packageName)
 
-                Toast.makeText(context, "Restarting Launcher...", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    context,
+                    modRes.getString(R.string.restarting_launcher),
+                    Toast.LENGTH_SHORT
+                ).show()
 
                 CoroutineScope(Dispatchers.IO).launch {
                     delay(1000)
