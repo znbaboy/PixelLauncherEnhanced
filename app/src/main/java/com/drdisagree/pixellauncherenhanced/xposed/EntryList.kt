@@ -5,6 +5,7 @@ import com.drdisagree.pixellauncherenhanced.data.common.Constants.PIXEL_LAUNCHER
 import com.drdisagree.pixellauncherenhanced.xposed.mods.ClearAllButton
 import com.drdisagree.pixellauncherenhanced.xposed.mods.DrawerSearchbar
 import com.drdisagree.pixellauncherenhanced.xposed.mods.GestureMod
+import com.drdisagree.pixellauncherenhanced.xposed.mods.GridOptions
 import com.drdisagree.pixellauncherenhanced.xposed.mods.HideApps
 import com.drdisagree.pixellauncherenhanced.xposed.mods.HideStatusbar
 import com.drdisagree.pixellauncherenhanced.xposed.mods.HotseatMod
@@ -39,6 +40,7 @@ object EntryList {
         LockLayout::class.java,
         DrawerSearchbar::class.java,
         ClearAllButton::class.java,
+        GridOptions::class.java,
         HideApps::class.java
     )
 
