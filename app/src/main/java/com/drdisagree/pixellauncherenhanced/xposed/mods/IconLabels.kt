@@ -4,12 +4,11 @@ import android.content.Context
 import com.drdisagree.pixellauncherenhanced.data.common.Constants.APP_DRAWER_ICON_LABELS
 import com.drdisagree.pixellauncherenhanced.data.common.Constants.DESKTOP_ICON_LABELS
 import com.drdisagree.pixellauncherenhanced.xposed.ModPack
+import com.drdisagree.pixellauncherenhanced.xposed.mods.LauncherUtils.Companion.reloadLauncher
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.XposedHook.Companion.findClass
-import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.callMethod
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.getExtraFieldSilently
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.getField
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.getFieldSilently
-import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.hookConstructor
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.hookMethod
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.setExtraField
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.setField
@@ -21,7 +20,6 @@ class IconLabels(context: Context) : ModPack(context) {
 
     private var showDesktopLabels = true
     private var showDrawerLabels = true
-    private var invariantDeviceProfileInstance: Any? = null
 
     override fun updatePrefs(vararg key: String) {
         Xprefs.apply {
@@ -33,20 +31,12 @@ class IconLabels(context: Context) : ModPack(context) {
             in setOf(
                 DESKTOP_ICON_LABELS,
                 APP_DRAWER_ICON_LABELS
-            ) -> reloadLauncher()
+            ) -> reloadLauncher(mContext)
         }
     }
 
     override fun handleLoadPackage(loadPackageParam: LoadPackageParam) {
-        val invariantDeviceProfileClass = findClass("com.android.launcher3.InvariantDeviceProfile")
         val bubbleTextViewClass = findClass("com.android.launcher3.BubbleTextView")
-        val deviceProfileClass = findClass("com.android.launcher3.DeviceProfile")
-
-        invariantDeviceProfileClass
-            .hookConstructor()
-            .runAfter { param ->
-                invariantDeviceProfileInstance = param.thisObject
-            }
 
         fun XC_MethodHook.MethodHookParam.beforeHookedLabel() {
             val mDisplay = thisObject.getField("mDisplay") as Int
@@ -115,10 +105,6 @@ class IconLabels(context: Context) : ModPack(context) {
             DISPLAY_PREDICTION_ROW,
             DISPLAY_SEARCH_RESULT_APP_ROW,
         )
-    }
-
-    private fun reloadLauncher() {
-        invariantDeviceProfileInstance.callMethod("onConfigChanged", mContext)
     }
 
     companion object {

@@ -6,8 +6,8 @@ import com.drdisagree.pixellauncherenhanced.data.common.Constants.APP_DRAWER_GRI
 import com.drdisagree.pixellauncherenhanced.data.common.Constants.DESKTOP_GRID_COLUMNS
 import com.drdisagree.pixellauncherenhanced.data.common.Constants.DESKTOP_GRID_ROWS
 import com.drdisagree.pixellauncherenhanced.xposed.ModPack
+import com.drdisagree.pixellauncherenhanced.xposed.mods.LauncherUtils.Companion.reloadLauncher
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.XposedHook.Companion.findClass
-import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.callMethod
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.getField
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.hookConstructor
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.hookMethod
@@ -22,7 +22,6 @@ class GridOptions (context: Context) : ModPack(context) {
     private var homeScreenGridColumns = 0
     private var appDrawerGridColumns = 0
     private var appDrawerGridRowHeightMultiplier = 1f
-    private var invariantDeviceProfileInstance: Any? = null
 
     override fun updatePrefs(vararg key: String) {
         Xprefs.apply {
@@ -38,22 +37,13 @@ class GridOptions (context: Context) : ModPack(context) {
             DESKTOP_GRID_COLUMNS,
             APP_DRAWER_GRID_COLUMNS,
             APP_DRAWER_GRID_ROW_HEIGHT_MULTIPLIER,
-                -> invariantDeviceProfileInstance.callMethod(
-                "onConfigChanged",
-                mContext
-            )
+                -> reloadLauncher(mContext)
         }
     }
 
     override fun handleLoadPackage(loadPackageParam: XC_LoadPackage.LoadPackageParam) {
         val invariantDeviceProfileClass = findClass("com.android.launcher3.InvariantDeviceProfile")
         val deviceProfileClass = findClass("com.android.launcher3.DeviceProfile")
-
-        invariantDeviceProfileClass
-            .hookConstructor()
-            .runAfter { param ->
-                invariantDeviceProfileInstance = param.thisObject
-            }
 
         deviceProfileClass
             .hookConstructor()

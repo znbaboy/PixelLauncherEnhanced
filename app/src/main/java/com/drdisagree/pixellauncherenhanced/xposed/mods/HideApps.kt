@@ -5,6 +5,7 @@ import android.content.Context
 import com.drdisagree.pixellauncherenhanced.data.common.Constants.APP_BLOCK_LIST
 import com.drdisagree.pixellauncherenhanced.data.common.Constants.SEARCH_HIDDEN_APPS
 import com.drdisagree.pixellauncherenhanced.xposed.ModPack
+import com.drdisagree.pixellauncherenhanced.xposed.mods.LauncherUtils.Companion.reloadLauncher
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.XposedHook.Companion.findClass
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.callMethod
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.getField
@@ -306,6 +307,6 @@ class HideApps(context: Context) : ModPack(context) {
         activityAllAppsContainerViewInstance.callMethod("onAppsUpdated")
         hotseatPredictionControllerInstance.callMethod("fillGapsWithPrediction", true)
         predictionRowViewInstance.callMethod("applyPredictionApps")
-        invariantDeviceProfileInstance.callMethod("onConfigChanged", mContext)
+        reloadLauncher(mContext)
     }
 }
