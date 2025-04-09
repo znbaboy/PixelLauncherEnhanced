@@ -151,7 +151,7 @@ class LauncherSettings(context: Context) : ModPack(context) {
                 myPreference.javaClass
                     .hookMethod("onBindViewHolder")
                     .runBefore { param ->
-                        val mKey = param.thisObject.getField("mKey") as? String
+                        val mKey = param.thisObject.getFieldSilently("mKey") as? String
 
                         if (mKey == BuildConfig.APPLICATION_ID) {
                             param.thisObject.setField("mAllowDividerAbove", false)
