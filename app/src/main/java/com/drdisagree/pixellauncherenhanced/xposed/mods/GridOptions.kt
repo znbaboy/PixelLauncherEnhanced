@@ -55,9 +55,6 @@ class GridOptions (context: Context) : ModPack(context) {
                     if (appDrawerGridColumns != 0) {
                         setField("numShownAllAppsColumns", appDrawerGridColumns)
                     }
-                    if (homeScreenGridColumns != 0) {
-                        setField("numShownHotseatIcons", homeScreenGridColumns)
-                    }
                 }
             }
 
