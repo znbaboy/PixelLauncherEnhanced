@@ -47,6 +47,7 @@ object Constants {
     const val APP_DRAWER_GRID_ROW_HEIGHT_MULTIPLIER = "xposed_appdrawergridrowheightmultiplier"
     const val APP_BLOCK_LIST = "xposed_appblocklist"
     const val SEARCH_HIDDEN_APPS = "xposed_searchhiddenapps"
+    const val REMOVE_ICON_BADGE = "xposed_removeiconbadge"
 
     val PREF_UPDATE_EXCLUSIONS = listOf(
         BootLoopProtector.LOAD_TIME_KEY_KEY,

@@ -51,6 +51,7 @@
 
     <string name="force_themed_icons_title">Force themed icons</string>
     <string name="force_themed_icons_desc">Generate monochromatic icons if not provided by the app</string>
+    <string name="remove_shortcut_badge_title">Remove shortcut icon badge</string>
     <string name="launcher_icon_size_title">Icon size</string>
     <string name="launcher_text_size_title">Text size</string>
     <string name="app_drawer_themed_icons_title">Themed icons</string>

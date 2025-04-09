@@ -8,6 +8,11 @@
         android:title="@string/force_themed_icons_title"
         app:iconSpaceReserved="false" />
 
+    <com.drdisagree.pixellauncherenhanced.ui.preferences.SwitchPreference
+        android:key="xposed_removeiconbadge"
+        android:title="@string/remove_shortcut_badge_title"
+        app:iconSpaceReserved="false" />
+
     <com.drdisagree.pixellauncherenhanced.ui.preferences.SliderPreference
         android:key="xposed_launchericonsize"
         android:title="@string/launcher_icon_size_title"

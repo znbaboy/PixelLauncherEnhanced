@@ -16,6 +16,7 @@ import com.drdisagree.pixellauncherenhanced.xposed.mods.LauncherSettings
 import com.drdisagree.pixellauncherenhanced.xposed.mods.LauncherUtils
 import com.drdisagree.pixellauncherenhanced.xposed.mods.LockLayout
 import com.drdisagree.pixellauncherenhanced.xposed.mods.OpacityModifier
+import com.drdisagree.pixellauncherenhanced.xposed.mods.ShortcutBadge
 import com.drdisagree.pixellauncherenhanced.xposed.mods.SmartSpace
 import com.drdisagree.pixellauncherenhanced.xposed.mods.ThemedIcons
 import com.drdisagree.pixellauncherenhanced.xposed.mods.TopShadow
@@ -41,7 +42,8 @@ object EntryList {
         DrawerSearchbar::class.java,
         ClearAllButton::class.java,
         GridOptions::class.java,
-        HideApps::class.java
+        HideApps::class.java,
+        ShortcutBadge::class.java
     )
 
     fun getEntries(packageName: String): ArrayList<Class<out ModPack>> {
