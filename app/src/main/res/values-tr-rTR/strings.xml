@@ -41,6 +41,7 @@
     <string name="fragment_hidden_apps_title">Uygulamaları gizle</string>
     <string name="force_themed_icons_title">Temalı simgeleri zorla</string>
     <string name="force_themed_icons_desc">Uygulama tarafından sağlanmazsa tek renkli simgeler oluştur</string>
+    <string name="remove_shortcut_badge_title">Kısayol simgesi rozetini kaldır</string>
     <string name="launcher_icon_size_title">Simge boyutu</string>
     <string name="launcher_text_size_title">Metin boyutu</string>
     <string name="app_drawer_themed_icons_title">Temalı simgeler</string>
@@ -77,6 +78,14 @@
     <string name="clear_all_button_title">Tümünü temizle düğmesi</string>
     <string name="fixed_button_width_title">Her düğme için sabit genişlik</string>
     <string name="recents_clear_all">Tümünü temizle</string>
+    <string name="homescreen_columns_title">Ana ekran sütunları</string>
+    <string name="homescreen_rows_title">Ana ekran satırları</string>
+    <string name="app_drawer_columns_title">Uygulama çekmecesi sütunları</string>
+    <string name="app_drawer_row_height_multiplier_title">Satır yüksekliği çarpanı</string>
     <string name="hide_apps_title">Uygulamaları çekmeceden gizle</string>
     <string name="search_hidden_apps_title">Gizli uygulamalarda arama yapmaya izin ver</string>
+    <string name="section_general_title">Genel</string>
+    <string name="section_interface_title">Arayüz</string>
+    <string name="section_search_bar_title">Arama çubuğu</string>
+    <string name="section_quickspace_title">Hızlı alan</string>
 </resources>
