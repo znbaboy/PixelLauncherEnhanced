@@ -4,8 +4,8 @@ import android.content.Context
 import com.drdisagree.pixellauncherenhanced.data.common.Constants.LAUNCHER_ICON_SIZE
 import com.drdisagree.pixellauncherenhanced.data.common.Constants.LAUNCHER_TEXT_SIZE
 import com.drdisagree.pixellauncherenhanced.xposed.ModPack
+import com.drdisagree.pixellauncherenhanced.xposed.mods.LauncherUtils.Companion.reloadLauncher
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.XposedHook.Companion.findClass
-import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.callMethod
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.getField
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.hookConstructor
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.setField
@@ -14,7 +14,6 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam
 
 class IconTextSize(context: Context) : ModPack(context) {
 
-    private var invariantDeviceProfileInstance: Any? = null
     private var iconSizeModifier = 1f
     private var textSizeModifier = 1f
 
@@ -28,19 +27,11 @@ class IconTextSize(context: Context) : ModPack(context) {
             in setOf(
                 LAUNCHER_ICON_SIZE,
                 LAUNCHER_TEXT_SIZE
-            ) -> invariantDeviceProfileInstance.callMethod("onConfigChanged", mContext)
+            ) -> reloadLauncher(mContext)
         }
     }
 
     override fun handleLoadPackage(loadPackageParam: LoadPackageParam) {
-        val invariantDeviceProfileClass = findClass("com.android.launcher3.InvariantDeviceProfile")
-
-        invariantDeviceProfileClass
-            .hookConstructor()
-            .runAfter { param ->
-                invariantDeviceProfileInstance = param.thisObject
-            }
-
         val deviceProfileClass = findClass("com.android.launcher3.DeviceProfile")
 
         deviceProfileClass

@@ -5,13 +5,12 @@ import android.content.Context
 import android.graphics.drawable.AdaptiveIconDrawable
 import android.graphics.drawable.Drawable
 import android.os.Build
-import android.os.Handler
-import android.os.Looper
 import android.text.TextUtils
 import com.drdisagree.pixellauncherenhanced.data.common.Constants.APP_DRAWER_THEMED_ICONS
 import com.drdisagree.pixellauncherenhanced.data.common.Constants.FORCE_THEMED_ICONS
 import com.drdisagree.pixellauncherenhanced.data.common.Constants.LAUNCHER3_PACKAGE
 import com.drdisagree.pixellauncherenhanced.xposed.ModPack
+import com.drdisagree.pixellauncherenhanced.xposed.mods.LauncherUtils.Companion.reloadIcons
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.MonochromeIconFactory
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.XposedHook.Companion.findClass
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.callMethod
@@ -312,14 +311,6 @@ class ThemedIcons(context: Context) : ModPack(context) {
             .callMethod("get", context)
             .callMethod("isMonoThemeEnabled")
     } as Boolean
-
-    private fun reloadIcons() {
-        Handler(Looper.getMainLooper()).post {
-            mCache.callMethod("clear")
-            mIconDb.callMethod("clear")
-            mModel.callMethod("forceReload")
-        }
-    }
 
     companion object {
         const val FLAG_THEMED: Int = 1 shl 0

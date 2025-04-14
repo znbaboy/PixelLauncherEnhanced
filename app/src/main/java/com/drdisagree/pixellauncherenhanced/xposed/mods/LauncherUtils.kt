@@ -1,11 +1,19 @@
 package com.drdisagree.pixellauncherenhanced.xposed.mods
 
 import android.content.Context
+import android.os.Handler
+import android.os.Looper
 import android.widget.Toast
+import com.drdisagree.pixellauncherenhanced.R
 import com.drdisagree.pixellauncherenhanced.xposed.HookEntry.Companion.enqueueProxyCommand
+import com.drdisagree.pixellauncherenhanced.xposed.HookRes.Companion.modRes
 import com.drdisagree.pixellauncherenhanced.xposed.ModPack
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.XposedHook.Companion.findClass
+import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.callMethod
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.callStaticMethod
+import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.getAnyField
+import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.getField
+import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.hookConstructor
 import com.drdisagree.pixellauncherenhanced.xposed.utils.BootLoopProtector.resetCounter
 import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam
 import kotlinx.coroutines.CoroutineScope
@@ -20,12 +28,44 @@ class LauncherUtils(context: Context) : ModPack(context) {
     override fun handleLoadPackage(loadPackageParam: LoadPackageParam) {
         ThemesClass = findClass("com.android.launcher3.util.Themes")
         GraphicsUtilsClass = findClass("com.android.launcher3.icons.GraphicsUtils")
+        invariantDeviceProfileClass = findClass("com.android.launcher3.InvariantDeviceProfile")
+        baseIconCacheClass = findClass("com.android.launcher3.icons.cache.BaseIconCache")
+        launcherAppStateClass = findClass("com.android.launcher3.LauncherAppState")
+
+        invariantDeviceProfileClass
+            .hookConstructor()
+            .runAfter { param ->
+                invariantDeviceProfileInstance = param.thisObject
+            }
+
+        baseIconCacheClass
+            .hookConstructor()
+            .runAfter { param ->
+                mIconDb = param.thisObject.getAnyField("mIconDb", "iconDb")
+                mCache = param.thisObject.getAnyField("mCache", "cache")
+            }
+
+        launcherAppStateClass
+            .hookConstructor()
+            .runAfter { param ->
+                mModel = param.thisObject.getField("mModel")
+            }
+
     }
 
     companion object {
 
         private var ThemesClass: Class<*>? = null
         private var GraphicsUtilsClass: Class<*>? = null
+        private var invariantDeviceProfileClass: Class<*>? = null
+        private var baseIconCacheClass: Class<*>? = null
+        private var launcherAppStateClass: Class<*>? = null
+
+        private var invariantDeviceProfileInstance: Any? = null
+        private var mIconDb: Any? = null
+        private var mCache: Any? = null
+        private var mModel: Any? = null
+
         private var lastRestartTime = 0L
 
         fun getAttrColor(context: Context, resID: Int): Int {
@@ -67,7 +107,11 @@ class LauncherUtils(context: Context) : ModPack(context) {
                 lastRestartTime = currentTime
                 resetCounter(context.packageName)
 
-                Toast.makeText(context, "Restarting Launcher...", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    context,
+                    modRes.getString(R.string.restarting_launcher),
+                    Toast.LENGTH_SHORT
+                ).show()
 
                 CoroutineScope(Dispatchers.IO).launch {
                     delay(1000)
@@ -75,6 +119,18 @@ class LauncherUtils(context: Context) : ModPack(context) {
                         proxy.runCommand("killall ${context.packageName}")
                     }
                 }
+            }
+        }
+
+        fun reloadLauncher(context: Context) {
+            invariantDeviceProfileInstance.callMethod("onConfigChanged", context)
+        }
+
+        fun reloadIcons() {
+            Handler(Looper.getMainLooper()).post {
+                mCache.callMethod("clear")
+                mIconDb.callMethod("clear")
+                mModel.callMethod("forceReload")
             }
         }
     }
