@@ -10,7 +10,7 @@
     <string name="btn_pick_image">Elegir imagen</string>
     <string name="understood">Entendido</string>
     <string name="settings_title">Ajustes</string>
-    <string name="search_hint">Search…</string>
+    <string name="search_hint">Buscar…</string>
     <string name="root_connection_failed_title">Falló la conexión root</string>
     <string name="root_connection_failed_desc">No se puede conectar con el servicio root. Por favor, concede acceso root e inténtalo de nuevo.</string>
     <string name="lsposed_warn">Activar este módulo desde LSPosed y forzar el cierre del launcher.</string>
@@ -38,9 +38,10 @@
     <string name="fragment_miscellaneous_desc">Otras opciones útiles</string>
     <string name="fragment_about_title">Acerca de</string>
     <string name="fragment_about_desc">Sobre esta aplicación</string>
-    <string name="fragment_hidden_apps_title">Hide apps</string>
+    <string name="fragment_hidden_apps_title">Ocultar aplicaciones</string>
     <string name="force_themed_icons_title">Forzar iconos temáticos</string>
     <string name="force_themed_icons_desc">Generar iconos monocromáticos si la aplicación no los proporciona</string>
+    <string name="remove_shortcut_badge_title">Eliminar insignia de icono de acceso directo</string>
     <string name="launcher_icon_size_title">Tamaño de los iconos</string>
     <string name="launcher_text_size_title">Tamaño del texto</string>
     <string name="app_drawer_themed_icons_title">Iconos tematizados</string>
@@ -77,6 +78,14 @@
     <string name="clear_all_button_title">Botón \"Borrar todo\"</string>
     <string name="fixed_button_width_title">Ancho fijo de cada botón</string>
     <string name="recents_clear_all">Borrar todo</string>
-    <string name="hide_apps_title">Hide apps from app drawer</string>
-    <string name="search_hidden_apps_title">Allow searching for hidden apps</string>
+    <string name="homescreen_columns_title">Columnas de pantalla de inicio</string>
+    <string name="homescreen_rows_title">Filas de pantalla de inicio</string>
+    <string name="app_drawer_columns_title">Columnas del cajón de aplicaciones</string>
+    <string name="app_drawer_row_height_multiplier_title">Multiplicador de altura de fila</string>
+    <string name="hide_apps_title">Ocultar aplicaciones del cajón de aplicaciones</string>
+    <string name="search_hidden_apps_title">Permitir la búsqueda de aplicaciones ocultas</string>
+    <string name="section_general_title">General</string>
+    <string name="section_interface_title">Interfaz</string>
+    <string name="section_search_bar_title">Barra de búsqueda</string>
+    <string name="section_quickspace_title">Espacio Rápido</string>
 </resources>

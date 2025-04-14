@@ -10,7 +10,7 @@
     <string name="btn_pick_image">Выбрать изображение</string>
     <string name="understood">Понял</string>
     <string name="settings_title">Настройки</string>
-    <string name="search_hint">Поиск…</string>
+    <string name="search_hint">Искать…</string>
     <string name="root_connection_failed_title">Отсутствует рут доступ</string>
     <string name="root_connection_failed_desc">Не удается получить рут. Пожалуйста, предоставьте рут доступ и повторите попытку.</string>
     <string name="lsposed_warn">Включите модуль в Xposed и принудительно закройте программу.</string>
@@ -41,6 +41,7 @@
     <string name="fragment_hidden_apps_title">Скрытие приложений</string>
     <string name="force_themed_icons_title">Тематические значки</string>
     <string name="force_themed_icons_desc">Создает тематические значки, если они не предусмотрены приложением</string>
+    <string name="remove_shortcut_badge_title">Удаление значка ярлыка</string>
     <string name="launcher_icon_size_title">Размер иконок</string>
     <string name="launcher_text_size_title">Размер текста</string>
     <string name="app_drawer_themed_icons_title">Тематические значки</string>
@@ -77,6 +78,14 @@
     <string name="clear_all_button_title">Кнопка \"Очистить все\"</string>
     <string name="fixed_button_width_title">Фиксированная ширина для каждой кнопки</string>
     <string name="recents_clear_all">Очистить</string>
-    <string name="hide_apps_title">Скрыть приложения из меню приложений</string>
+    <string name="homescreen_columns_title">Столбцы на главном экране</string>
+    <string name="homescreen_rows_title">Строки на главном экране</string>
+    <string name="app_drawer_columns_title">Столбцы в меню приложений</string>
+    <string name="app_drawer_row_height_multiplier_title">Множитель высоты строки</string>
+    <string name="hide_apps_title">Скрыть приложения из меню</string>
     <string name="search_hidden_apps_title">Разрешить поиск скрытых приложений</string>
+    <string name="section_general_title">Основные</string>
+    <string name="section_interface_title">Интерфейс</string>
+    <string name="section_search_bar_title">Строка поиска</string>
+    <string name="section_quickspace_title">«Первый взгляд»</string>
 </resources>
