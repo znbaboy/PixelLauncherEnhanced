@@ -8,16 +8,19 @@ import com.drdisagree.pixellauncherenhanced.xposed.ModPack
 import com.drdisagree.pixellauncherenhanced.xposed.mods.LauncherUtils.Companion.reloadLauncher
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.XposedHook.Companion.findClass
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.callMethod
+import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.getExtraFieldSilently
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.getField
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.getFieldSilently
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.hookConstructor
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.hookMethod
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.log
+import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.setExtraField
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.setField
 import com.drdisagree.pixellauncherenhanced.xposed.utils.XPrefs.Xprefs
 import de.robv.android.xposed.XC_MethodHook
 import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam
 import java.lang.reflect.Modifier
+import java.util.Arrays
 
 class HideApps(context: Context) : ModPack(context) {
 
@@ -74,21 +77,40 @@ class HideApps(context: Context) : ModPack(context) {
             .runAfter { param -> predictionRowViewInstance = param.thisObject }
 
         allAppsStoreClass
-            .hookMethod("getApp")
+            .hookMethod("setApps")
             .runAfter { param ->
-                if (param.result == null || searchHiddenApps) return@runAfter
+                val apps = param.args[0]
 
-                val componentName = param.result.getComponentName()
-
-                if (matchesBlocklist(componentName)) {
-                    param.result = null
+                if (apps != null) {
+                    param.thisObject.setExtraField("mAppsBackup", apps)
                 }
             }
 
+        @Suppress("UNCHECKED_CAST")
         allAppsStoreClass
-            .hookMethod("getApps")
+            .hookMethod("getApp")
             .runBefore { param ->
-                updateAllAppsStore(param, appInfoClass!!)
+                val componentKey = param.args[0]
+                val comparator = param.args[1] as Comparator<Any?>
+
+                val mApps = param.thisObject.getExtraFieldSilently("mAppsBackup") as? Array<*>
+                    ?: return@runBefore
+
+                val componentName = componentKey.getFieldSilently("componentName") as? ComponentName
+                val user = componentKey.getFieldSilently("user")
+
+                val appInfo = param.thisObject.getField("mTempInfo").apply {
+                    setField("componentName", componentName)
+                    setField("user", user)
+                }
+
+                val binarySearch = Arrays.binarySearch<Any?>(mApps, appInfo, comparator)
+
+                if (binarySearch < 0 || (!searchHiddenApps && matchesBlocklist(componentName))) {
+                    param.result = null
+                } else {
+                    param.result = mApps[binarySearch]
+                }
             }
 
         predictionRowViewClass
@@ -199,12 +221,6 @@ class HideApps(context: Context) : ModPack(context) {
                 }
         }
 
-        activityAllAppsContainerViewClass
-            .hookMethod("onAppsUpdated")
-            .runBefore { param ->
-                updateAllAppsStore(param, appInfoClass!!)
-            }
-
         alphabeticalAppsListClass
             .hookMethod("onAppsUpdated")
             .runBefore { param ->
@@ -234,13 +250,13 @@ class HideApps(context: Context) : ModPack(context) {
         param: XC_MethodHook.MethodHookParam,
         appInfoClass: Class<*>
     ) {
-        val mAllAppsStore = param.thisObject.getFieldSilently("mAllAppsStore")
+        val mAllAppsStore = param.thisObject.getFieldSilently("mAllAppsStore") ?: return
 
         try {
             val mComponentToAppMap = try {
                 mAllAppsStore.getField("mComponentToAppMap") as HashMap<*, *>
             } catch (_: Throwable) {
-                return
+                throw IllegalStateException("mComponentToAppMap is null")
             }
 
             mComponentToAppMap.keys.forEach { key ->
