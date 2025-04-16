@@ -78,11 +78,9 @@ class HideApps(context: Context) : ModPack(context) {
             .runAfter { param ->
                 if (param.result == null || searchHiddenApps) return@runAfter
 
-                if (matchesBlocklist(
-                        (param.result.getFieldSilently("componentName") as? ComponentName
-                            ?: param.result.getFieldSilently("mComponentName") as? ComponentName)?.packageName
-                    )
-                ) {
+                val componentName = param.result.getComponentName()
+
+                if (matchesBlocklist(componentName)) {
                     param.result = null
                 }
             }
@@ -103,12 +101,9 @@ class HideApps(context: Context) : ModPack(context) {
 
                 while (iterator.hasNext()) {
                     val workspaceItemInfo = iterator.next()
-                    val componentName =
-                        workspaceItemInfo.getFieldSilently("componentName") as? ComponentName
-                            ?: workspaceItemInfo.getFieldSilently("mComponentName") as? ComponentName
-                            ?: workspaceItemInfo.callMethod("getTargetComponent") as? ComponentName
+                    val componentName = workspaceItemInfo.getComponentName()
 
-                    if (matchesBlocklist(componentName?.packageName)) {
+                    if (matchesBlocklist(componentName)) {
                         iterator.remove()
                     }
                 }
@@ -127,12 +122,9 @@ class HideApps(context: Context) : ModPack(context) {
 
                 while (iterator.hasNext()) {
                     val itemInfo = iterator.next()
-                    val componentName =
-                        itemInfo.getFieldSilently("componentName") as? ComponentName
-                            ?: itemInfo.getFieldSilently("mComponentName") as? ComponentName
-                            ?: itemInfo.callMethod("getTargetComponent") as? ComponentName
+                    val componentName = itemInfo.getComponentName()
 
-                    if (matchesBlocklist(componentName?.packageName)) {
+                    if (matchesBlocklist(componentName)) {
                         iterator.remove()
                     }
                 }
@@ -152,11 +144,9 @@ class HideApps(context: Context) : ModPack(context) {
 
                     while (iterator.hasNext()) {
                         val appInfo = iterator.next()
-                        val componentName =
-                            appInfo.getFieldSilently("componentName") as? ComponentName
-                                ?: appInfo.getFieldSilently("mComponentName") as? ComponentName
+                        val componentName = appInfo.getComponentName()
 
-                        if (matchesBlocklist(componentName?.packageName)) {
+                        if (matchesBlocklist(componentName)) {
                             iterator.remove()
                         }
                     }
@@ -197,11 +187,9 @@ class HideApps(context: Context) : ModPack(context) {
 
                     while (iterator.hasNext()) {
                         val appInfo = iterator.next()
-                        val componentName =
-                            appInfo.getFieldSilently("componentName") as? ComponentName
-                                ?: appInfo.getFieldSilently("mComponentName") as? ComponentName
+                        val componentName = appInfo.getComponentName()
 
-                        if (matchesBlocklist(componentName?.packageName)) {
+                        if (matchesBlocklist(componentName)) {
                             iterator.remove()
                         }
                     }
@@ -231,10 +219,9 @@ class HideApps(context: Context) : ModPack(context) {
                 while (iterator.hasNext()) {
                     val item = iterator.next()
                     val itemInfo = item.getFieldSilently("itemInfo")
-                    val componentName = itemInfo.getFieldSilently("componentName") as? ComponentName
-                        ?: itemInfo.getFieldSilently("mComponentName") as? ComponentName
+                    val componentName = itemInfo.getComponentName()
 
-                    if (matchesBlocklist(componentName?.packageName)) {
+                    if (matchesBlocklist(componentName)) {
                         iterator.remove()
                     }
                 }
@@ -258,11 +245,9 @@ class HideApps(context: Context) : ModPack(context) {
 
             mComponentToAppMap.keys.forEach { key ->
                 val appInfo = mComponentToAppMap[key]
-                val componentName =
-                    appInfo.getFieldSilently("componentName") as? ComponentName
-                        ?: appInfo.getFieldSilently("mComponentName") as? ComponentName
+                val componentName = appInfo.getComponentName()
 
-                if (matchesBlocklist(componentName?.packageName)) {
+                if (matchesBlocklist(componentName)) {
                     mComponentToAppMap.remove(key)
                 }
             }
@@ -279,11 +264,9 @@ class HideApps(context: Context) : ModPack(context) {
 
             while (iterator.hasNext()) {
                 val appInfo = iterator.next()
-                val componentName =
-                    appInfo.getFieldSilently("componentName") as? ComponentName
-                        ?: appInfo.getFieldSilently("mComponentName") as? ComponentName
+                val componentName = appInfo.getComponentName()
 
-                if (matchesBlocklist(componentName?.packageName)) {
+                if (matchesBlocklist(componentName)) {
                     iterator.remove()
                 }
             }
@@ -298,8 +281,20 @@ class HideApps(context: Context) : ModPack(context) {
         }
     }
 
+    private fun Any?.getComponentName(): ComponentName {
+        if (this == null) return ComponentName("", "")
+
+        return getFieldSilently("componentName") as? ComponentName
+            ?: getFieldSilently("mComponentName") as? ComponentName
+            ?: callMethod("getTargetComponent") as ComponentName
+    }
+
+    private fun matchesBlocklist(componentName: ComponentName?): Boolean {
+        return matchesBlocklist(componentName?.packageName)
+    }
+
     private fun matchesBlocklist(packageName: String?): Boolean {
-        if (packageName == null) return false
+        if (packageName.isNullOrEmpty()) return false
         return appBlockList.contains(packageName)
     }
 
