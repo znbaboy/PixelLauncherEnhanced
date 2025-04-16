@@ -21,11 +21,12 @@ PixelLauncher Enhanced is an Xposed module designed to unlock a variety of excit
 <details>
 <summary>Icons</summary>
 
-| Feature            | Pixel Launcher | Launcher3 Launcher |
-|--------------------|:--------------:|:------------------:|
-| Force themed icons |       ✅        |         ✅          |
-| Icon size          |       ✅        |         ✅          |
-| Text size          |       ✅        |         ✅          |
+| Feature                    | Pixel Launcher | Launcher3 Launcher |
+|----------------------------|:--------------:|:------------------:|
+| Force themed icons         |       ✅        |         ✅          |
+| Remove shortcut icon badge |       ✅        |         ✅          |
+| Icon size                  |       ✅        |         ✅          |
+| Text size                  |       ✅        |         ✅          |
 
 </details>
 
@@ -39,6 +40,8 @@ PixelLauncher Enhanced is an Xposed module designed to unlock a variety of excit
 | Hide statusbar          |       ✅        |         ✅          |
 | Hide top shadow         |       ✅        |         ✅          |
 | Icon labels on desktop  |       ✅        |         ✅          |
+| Homescreen columns      |       ✅        |         ✅          |
+| Homescreen rows         |       ✅        |         ✅          |
 | Hide At A Glance        |       ✅        |         ✅          |
 | Hide desktop search bar |       ✅        |         ✅          |
 | Dock spacing            |       ✅        |         ✅          |
@@ -54,7 +57,10 @@ PixelLauncher Enhanced is an Xposed module designed to unlock a variety of excit
 | Toggle app search bar         |       ✅        |         ✅          |
 | Icon labels in app drawer     |       ✅        |         ✅          |
 | Hide apps from app drawer     |       ✅        |         ✅          |
+| Search hidden apps            |       ✅        |         ✅          |
 | App drawer background opacity |       ✅        |         ✅          |
+| App drawer columns            |       ✅        |         ✅          |
+| Row height multiplier         |       ✅        |         ✅          |
 
 </details>
 
