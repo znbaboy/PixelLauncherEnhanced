@@ -5,7 +5,6 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.text.Editable
@@ -30,6 +29,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.Locale
+
 
 class HiddenApps : Fragment() {
 
@@ -209,10 +209,14 @@ class HiddenApps : Fragment() {
             val appBlockList = RPrefs.getStringSet(APP_BLOCK_LIST, emptySet())!!
             val appList: MutableList<AppInfoModel> = ArrayList()
             val packageManager = appContext.packageManager
+            val mainIntent = Intent(Intent.ACTION_MAIN, null).apply {
+                addCategory(Intent.CATEGORY_LAUNCHER)
+            }
+            val resolveInfoList = packageManager.queryIntentActivities(mainIntent, 0)
 
-            val applications = packageManager.getInstalledApplications(PackageManager.GET_META_DATA)
-
-            for (appInfo in applications) {
+            for (resolveInfo in resolveInfoList) {
+                val activityInfo = resolveInfo.activityInfo
+                val appInfo = activityInfo.applicationInfo
                 val packageName = appInfo.packageName
 
                 packageManager.getLaunchIntentForPackage(packageName) ?: continue
