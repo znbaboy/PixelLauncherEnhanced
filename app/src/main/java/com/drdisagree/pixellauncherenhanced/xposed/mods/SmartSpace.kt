@@ -6,15 +6,16 @@ import android.content.SharedPreferences
 import android.graphics.Point
 import com.drdisagree.pixellauncherenhanced.data.common.Constants.HIDE_AT_A_GLANCE
 import com.drdisagree.pixellauncherenhanced.xposed.ModPack
+import com.drdisagree.pixellauncherenhanced.xposed.mods.LauncherUtils.Companion.restartLauncher
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.XposedHook.Companion.findClass
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.callMethod
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.callStaticMethod
+import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.getAnyField
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.getField
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.getFieldSilently
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.hookConstructor
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.hookMethod
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.setField
-import com.drdisagree.pixellauncherenhanced.xposed.mods.LauncherUtils.Companion.restartLauncher
 import com.drdisagree.pixellauncherenhanced.xposed.utils.XPrefs.Xprefs
 import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam
 import java.lang.reflect.Modifier
@@ -62,15 +63,18 @@ class SmartSpace(context: Context) : ModPack(context) {
             "com.android.launcher3.LauncherPrefs\$Companion",
             suppressError = true
         )
+        var quickspaceListenerRegistered = false
 
         launcherAppStateClass
             .hookConstructor()
             .runAfter { param ->
-                if (!hideQuickspace) return@runAfter
+                if (!hideQuickspace || quickspaceListenerRegistered) return@runAfter
 
-                val context = param.thisObject.getField("mContext")
-                val mModel = param.thisObject.getField("mModel")
-                val mOnTerminateCallback = param.thisObject.getField("mOnTerminateCallback")
+                val context = param.thisObject.getAnyField("mContext", "context")
+                val mModel = param.thisObject.getAnyField("mModel", "model")
+
+                // Doesn't exist in Android 16 beta 4+
+                val mOnTerminateCallback = param.thisObject.getFieldSilently("mOnTerminateCallback")
 
                 val firstPagePinnedItemListener =
                     SharedPreferences.OnSharedPreferenceChangeListener { sharedPreferences, key ->
@@ -82,13 +86,15 @@ class SmartSpace(context: Context) : ModPack(context) {
                 val launcherPrefs = try {
                     launcherPrefsClass.callStaticMethod("getPrefs", context)
                 } catch (_: Throwable) {
-                    launcherPrefsCompanionClass.callStaticMethod("getPrefs", context)
+                    launcherPrefsCompanionClass.callMethod("getPrefs", context)
                 }
 
                 launcherPrefs.callMethod(
                     "registerOnSharedPreferenceChangeListener",
                     firstPagePinnedItemListener
                 )
+
+                quickspaceListenerRegistered = true
 
                 mOnTerminateCallback.callMethod(
                     "add",
@@ -97,6 +103,7 @@ class SmartSpace(context: Context) : ModPack(context) {
                             "unregisterOnSharedPreferenceChangeListener",
                             firstPagePinnedItemListener
                         )
+                        quickspaceListenerRegistered = false
                     }
                 )
             }
