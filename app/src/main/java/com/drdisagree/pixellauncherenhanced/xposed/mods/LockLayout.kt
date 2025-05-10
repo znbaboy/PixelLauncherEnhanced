@@ -8,6 +8,7 @@ import com.drdisagree.pixellauncherenhanced.xposed.HookRes.Companion.modRes
 import com.drdisagree.pixellauncherenhanced.xposed.ModPack
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.XposedHook.Companion.findClass
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.callMethod
+import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.getFieldSilently
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.hookMethod
 import com.drdisagree.pixellauncherenhanced.xposed.utils.XPrefs.Xprefs
 import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam
@@ -30,6 +31,10 @@ class LockLayout(context: Context) : ModPack(context) {
         val launcherPopupItemDragHandlerClass =
             findClass("com.android.launcher3.popup.PopupContainerWithArrow\$LauncherPopupItemDragHandler")
         val optionsPopupViewClass = findClass("com.android.launcher3.views.OptionsPopupView")
+        val taskbarDragControllerClass = findClass(
+            "com.android.launcher3.taskbar.TaskbarDragController",
+            suppressError = true
+        )
 
         dragControllerClass
             .hookMethod("onControllerInterceptTouchEvent")
@@ -38,6 +43,35 @@ class LockLayout(context: Context) : ModPack(context) {
 
                 param.thisObject.callMethod("cancelDrag")
                 param.result = false
+            }
+
+        taskbarDragControllerClass
+            .hookMethod("endDrag")
+            .runBefore { param ->
+                if (!lockLayout) return@runBefore
+
+                val mDragObject = param.thisObject.getFieldSilently("mDragObject")
+                val dragView = mDragObject.getFieldSilently("dragView")
+
+                if (mDragObject == null || dragView == null) {
+                    param.result = null
+                }
+            }
+
+        taskbarDragControllerClass
+            .hookMethod("setupReturnDragAnimator")
+            .runBefore { param ->
+                if (!lockLayout) return@runBefore
+
+                val taskbarReturnPropertiesListener = param.args[param.args.size - 1]
+
+                taskbarReturnPropertiesListener::class.java
+                    .hookMethod("updateDragShadow")
+                    .runBefore runBefore2@{ param2 ->
+                        if (!lockLayout) return@runBefore2
+
+                        param2.result = null
+                    }
             }
 
         launcherAppWidgetHostViewClass
