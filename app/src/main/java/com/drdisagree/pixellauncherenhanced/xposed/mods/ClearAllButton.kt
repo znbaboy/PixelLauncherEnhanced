@@ -22,6 +22,7 @@ import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.XposedHook.Compa
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.callMethod
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.callStaticMethodSilently
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.getField
+import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.getFieldSilently
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.hookConstructor
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.hookMethod
 import com.drdisagree.pixellauncherenhanced.xposed.utils.XPrefs.Xprefs
@@ -130,7 +131,15 @@ class ClearAllButton(context: Context) : ModPack(context) {
         overviewActionsViewClass
             .hookMethod("onFinishInflate")
             .runAfter { param ->
-                val mActionButtons = param.thisObject.getField("mActionButtons") as LinearLayout
+                val mActionButtons =
+                    param.thisObject.getFieldSilently("mActionButtons") as? LinearLayout
+                        ?: (param.thisObject as ViewGroup).findViewById<LinearLayout>(
+                            mContext.resources.getIdentifier(
+                                "action_buttons",
+                                "id",
+                                mContext.packageName
+                            )
+                        )
 
                 val contextThemeWrapper = ContextThemeWrapper(
                     mActionButtons.context,
