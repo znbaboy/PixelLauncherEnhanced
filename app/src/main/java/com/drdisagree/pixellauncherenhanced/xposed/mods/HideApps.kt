@@ -11,9 +11,9 @@ import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.callMethod
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.getExtraFieldSilently
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.getField
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.getFieldSilently
+import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.getStaticField
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.hookConstructor
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.hookMethod
-import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.log
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.setExtraField
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.setField
 import com.drdisagree.pixellauncherenhanced.xposed.utils.XPrefs.Xprefs
@@ -59,6 +59,7 @@ class HideApps(context: Context) : ModPack(context) {
         val allAppsStoreClass = findClass("com.android.launcher3.allapps.AllAppsStore")
         val appInfoClass = findClass("com.android.launcher3.model.data.AppInfo")
         val allAppsListClass = findClass("com.android.launcher3.model.AllAppsList")
+        val launcherModelClass = findClass("com.android.launcher3.LauncherModel")
 
         invariantDeviceProfileClass
             .hookConstructor()
@@ -91,7 +92,11 @@ class HideApps(context: Context) : ModPack(context) {
             .hookMethod("getApp")
             .runBefore { param ->
                 val componentKey = param.args[0]
-                val comparator = param.args[1] as Comparator<Any?>
+                val comparator = if (param.args.size > 1) {
+                    param.args[1]
+                } else {
+                    appInfoClass.getStaticField("COMPONENT_KEY_COMPARATOR")
+                } as Comparator<Any?>
 
                 val mApps = param.thisObject.getExtraFieldSilently("mAppsBackup") as? Array<*>
                     ?: return@runBefore
@@ -179,6 +184,31 @@ class HideApps(context: Context) : ModPack(context) {
             // Method seems to be unused on newer versions of pixel launcher
             // But still hook it just in case
 
+            fun removeAppResult(param: XC_MethodHook.MethodHookParam) {
+                if (searchHiddenApps) return
+
+                val appsIndex = param.args.indexOfFirst {
+                    it::class.java.simpleName == allAppsListClass!!.simpleName
+                }
+
+                val apps = param.args[appsIndex]
+                val data = apps.getField("data") as ArrayList<*>
+
+                val iterator = data.iterator()
+
+                while (iterator.hasNext()) {
+                    val appInfo = iterator.next()
+                    val componentName = appInfo.getComponentName()
+
+                    if (matchesBlocklist(componentName)) {
+                        iterator.remove()
+                    }
+                }
+
+                apps.setField("data", ArrayList(data))
+                param.args[appsIndex] = apps
+            }
+
             val methodName = (defaultAppSearchAlgorithmClass!!.declaredMethods.toList()
                 .union(defaultAppSearchAlgorithmClass.methods.toList()))
                 .firstOrNull { method ->
@@ -188,37 +218,30 @@ class HideApps(context: Context) : ModPack(context) {
                             method.parameterCount >= 2
                 }?.name
 
-            if (methodName == null) {
-                log(this@HideApps, "Failed to find getTitleMatchResult method")
-                return
+            if (methodName != null) {
+                defaultAppSearchAlgorithmClass
+                    .hookMethod(methodName)
+                    .runBefore { param ->
+                        removeAppResult(param)
+                    }
+            } else {
+                val baseModelUpdateTaskClass =
+                    findClass("com.android.launcher3.model.BaseModelUpdateTask")
+
+                launcherModelClass
+                    .hookMethod("enqueueModelUpdateTask")
+                    .runBefore { param ->
+                        val modelUpdateTask = param.args[0]
+
+                        if (modelUpdateTask::class.java.simpleName != baseModelUpdateTaskClass!!.simpleName) return@runBefore
+
+                        modelUpdateTask::class.java
+                            .hookMethod("execute")
+                            .runBefore { param2 ->
+                                removeAppResult(param2)
+                            }
+                    }
             }
-
-            defaultAppSearchAlgorithmClass
-                .hookMethod(methodName)
-                .runBefore { param ->
-                    if (searchHiddenApps) return@runBefore
-
-                    val appsIndex = param.args.indexOfFirst {
-                        it::class.java.simpleName == allAppsListClass!!.simpleName
-                    }
-
-                    val apps = param.args[appsIndex]
-                    val data = apps.getField("data") as ArrayList<*>
-
-                    val iterator = data.iterator()
-
-                    while (iterator.hasNext()) {
-                        val appInfo = iterator.next()
-                        val componentName = appInfo.getComponentName()
-
-                        if (matchesBlocklist(componentName)) {
-                            iterator.remove()
-                        }
-                    }
-
-                    apps.setField("data", ArrayList(data))
-                    param.args[appsIndex] = apps
-                }
         }
 
         alphabeticalAppsListClass
