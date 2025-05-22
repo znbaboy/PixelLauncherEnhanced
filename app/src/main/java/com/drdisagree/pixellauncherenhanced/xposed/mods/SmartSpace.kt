@@ -70,7 +70,7 @@ class SmartSpace(context: Context) : ModPack(context) {
             .runAfter { param ->
                 if (!hideQuickspace || quickspaceListenerRegistered) return@runAfter
 
-                val context = param.thisObject.getAnyField("mContext", "context")
+                val context = param.thisObject.getAnyField("mContext", "context") as Context
                 val mModel = param.thisObject.getAnyField("mModel", "model")
 
                 // Doesn't exist in Android 16 beta 4+
@@ -86,7 +86,7 @@ class SmartSpace(context: Context) : ModPack(context) {
                 val launcherPrefs = try {
                     launcherPrefsClass.callStaticMethod("getPrefs", context)
                 } catch (_: Throwable) {
-                    launcherPrefsCompanionClass.callMethod("getPrefs", context)
+                    launcherPrefsCompanionClass.callStaticMethod("getPrefs", context)
                 }
 
                 launcherPrefs.callMethod(
