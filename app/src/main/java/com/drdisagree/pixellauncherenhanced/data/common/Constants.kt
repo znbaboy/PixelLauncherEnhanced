@@ -25,6 +25,7 @@ object Constants {
     const val RECENTS_BACKGROUND_OPACITY = "xposed_recentsbackgroundopacity"
     const val DISABLE_RECENTS_LIVE_TILE = "xposed_disablerecentslivetile"
     const val DOUBLE_TAP_TO_SLEEP = "xposed_doubletaptosleep"
+    const val ALLOW_WALLPAPER_ZOOMING = "xposed_allowwallpaperzooming"
     const val LAUNCHER_HIDE_STATUSBAR = "xposed_launcherhidestatusbar"
     const val LAUNCHER_HIDE_TOP_SHADOW = "xposed_launcherhidetopshadow"
     const val DESKTOP_ICON_LABELS = "xposed_desktopiconlabels"

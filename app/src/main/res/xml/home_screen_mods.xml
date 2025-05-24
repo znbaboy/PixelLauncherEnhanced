@@ -20,6 +20,13 @@
             android:title="@string/double_tap_to_sleep_title"
             app:iconSpaceReserved="false" />
 
+        <com.drdisagree.pixellauncherenhanced.ui.preferences.SwitchPreference
+            android:defaultValue="true"
+            android:key="xposed_allowwallpaperzooming"
+            android:summary="@string/allow_wallpaper_zooming_summary"
+            android:title="@string/allow_wallpaper_zooming"
+            app:iconSpaceReserved="false" />
+
     </com.drdisagree.pixellauncherenhanced.ui.preferences.PreferenceCategory>
 
     <com.drdisagree.pixellauncherenhanced.ui.preferences.PreferenceCategory

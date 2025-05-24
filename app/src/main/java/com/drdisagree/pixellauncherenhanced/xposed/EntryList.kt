@@ -20,6 +20,7 @@ import com.drdisagree.pixellauncherenhanced.xposed.mods.ShortcutBadge
 import com.drdisagree.pixellauncherenhanced.xposed.mods.SmartSpace
 import com.drdisagree.pixellauncherenhanced.xposed.mods.ThemedIcons
 import com.drdisagree.pixellauncherenhanced.xposed.mods.TopShadow
+import com.drdisagree.pixellauncherenhanced.xposed.mods.WallpaperZoom
 import com.drdisagree.pixellauncherenhanced.xposed.utils.BroadcastHook
 
 object EntryList {
@@ -43,7 +44,8 @@ object EntryList {
         ClearAllButton::class.java,
         GridOptions::class.java,
         HideApps::class.java,
-        ShortcutBadge::class.java
+        ShortcutBadge::class.java,
+        WallpaperZoom::class.java
     )
 
     fun getEntries(packageName: String): ArrayList<Class<out ModPack>> {
