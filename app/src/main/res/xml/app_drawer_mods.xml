@@ -35,10 +35,13 @@
     <com.drdisagree.pixellauncherenhanced.ui.preferences.SliderPreference
         android:key="xposed_appdrawerbackgroundopacity"
         android:title="@string/app_drawer_background_opacity_title"
-        app:defaultValue="100"
+        app:defaultValue="-1"
+        app:hideValueOnDefault="true"
         app:iconSpaceReserved="false"
+        app:minVal="-1"
+        app:showDefaultIndicator="true"
         app:maxVal="100"
-        app:minVal="0"
+        app:showResetButton="true"
         app:tickInterval="1"
         app:valueFormat="%" />
 
@@ -50,6 +53,7 @@
         app:maxVal="15"
         app:minVal="0"
         app:showDefaultIndicator="true"
+        app:hideValueOnDefault="true"
         app:showResetButton="true"
         app:tickInterval="1" />
 
@@ -64,6 +68,7 @@
         app:minVal="5"
         app:outputScale="10.0"
         app:showDefaultIndicator="true"
+        app:hideValueOnDefault="true"
         app:showResetButton="true"
         app:tickInterval="0.5"
         app:valueFormat="x" />

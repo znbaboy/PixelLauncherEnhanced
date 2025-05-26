@@ -21,10 +21,13 @@
     <com.drdisagree.pixellauncherenhanced.ui.preferences.SliderPreference
         android:key="xposed_recentsbackgroundopacity"
         android:title="@string/recents_background_opacity_title"
-        app:defaultValue="100"
+        app:defaultValue="-1"
+        app:hideValueOnDefault="true"
         app:iconSpaceReserved="false"
         app:maxVal="100"
-        app:minVal="0"
+        app:minVal="-1"
+        app:showDefaultIndicator="true"
+        app:showResetButton="true"
         app:tickInterval="1"
         app:valueFormat="%" />
 

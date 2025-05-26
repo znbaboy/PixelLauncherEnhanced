@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.edit
 import androidx.preference.Preference
 import androidx.preference.PreferenceViewHolder
 import com.drdisagree.pixellauncherenhanced.R
@@ -26,6 +27,7 @@ import java.util.Scanner
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
+import kotlin.math.roundToInt
 
 /*
 * From Siavash79/rangesliderpreference
@@ -59,6 +61,7 @@ class SliderPreference(
     private val outputScale: Float
     private val isDecimalFormat: Boolean
     private val showDefaultIndicator: Boolean
+    private val hideValueOnDefault: Boolean
     private var decimalFormat: String? = "#.#"
 
     var updateConstantly: Boolean
@@ -94,6 +97,8 @@ class SliderPreference(
             outputScale = getFloat(R.styleable.SliderPreference_outputScale, 1f)
             showDefaultIndicator =
                 getBoolean(R.styleable.SliderPreference_showDefaultIndicator, false)
+            hideValueOnDefault =
+                getBoolean(R.styleable.SliderPreference_hideValueOnDefault, false)
             val defaultValStr = getString(androidx.preference.R.styleable.Preference_defaultValue)
 
             if (valueFormat == null) valueFormat = ""
@@ -266,7 +271,7 @@ class SliderPreference(
         val step = BigDecimal(mSlider!!.stepSize.toString())
 
         for (i in values.indices) {
-            val round = BigDecimal(Math.round(values[i] / mSlider!!.stepSize))
+            val round = BigDecimal((values[i] / mSlider!!.stepSize).roundToInt())
             val value = min(
                 max(step.multiply(round).toDouble(), mSlider!!.valueFrom.toDouble()),
                 mSlider!!.valueTo.toDouble()
@@ -324,12 +329,16 @@ class SliderPreference(
             defaultValue.isNotEmpty() &&
             defaultValue.containsAll(mSlider!!.values)
         ) {
-            getContext().getString(
-                R.string.opt_selected3,
-                formattedValues,
-                valueFormat,
-                getContext().getString(R.string.opt_default)
-            )
+            if (!hideValueOnDefault) {
+                getContext().getString(
+                    R.string.opt_selected3,
+                    formattedValues,
+                    valueFormat,
+                    getContext().getString(R.string.opt_default)
+                )
+            } else {
+                getContext().getString(R.string.opt_default).replace("[()]".toRegex(), "")
+            }
         } else {
             getContext().getString(
                 R.string.opt_selected2,
@@ -400,7 +409,7 @@ class SliderPreference(
                 jsonWriter.close()
                 val jsonString = writer.toString()
 
-                sharedPreferences.edit().putString(key, jsonString).apply()
+                sharedPreferences.edit { putString(key, jsonString) }
 
                 return true
             } catch (_: Exception) {
@@ -422,11 +431,11 @@ class SliderPreference(
                 try {
                     val value = prefs.getFloat(key, defaultValue)
                     values = mutableListOf(value)
-                } catch (ignored2: Exception) {
+                } catch (_: Exception) {
                     try {
-                        val value = prefs.getInt(key, Math.round(defaultValue))
+                        val value = prefs.getInt(key, defaultValue.roundToInt())
                         values = mutableListOf(value.toFloat())
-                    } catch (ignored3: Exception) {
+                    } catch (_: Exception) {
                         values = mutableListOf(defaultValue)
                     }
                 }
@@ -477,7 +486,7 @@ class SliderPreference(
         }
 
         fun getSingleIntValue(prefs: SharedPreferences, key: String?, defaultValue: Int): Int {
-            return Math.round(getSingleFloatValue(prefs, key, defaultValue.toFloat()))
+            return getSingleFloatValue(prefs, key, defaultValue.toFloat()).roundToInt()
         }
     }
 }

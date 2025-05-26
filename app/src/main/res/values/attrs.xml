@@ -23,6 +23,7 @@
         <attr name="minVal" format="float" />
         <attr name="maxVal" format="float" />
         <attr name="showResetButton" format="boolean" />
+        <attr name="hideValueOnDefault" format="boolean" />
         <attr name="showValueLabel" format="boolean" />
         <attr name="units" format="string" />
         <attr name="isDecimalFormat" format="boolean" />

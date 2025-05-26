@@ -19,15 +19,14 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam
 
 class OpacityModifier(context: Context) : ModPack(context) {
 
-    private var appDrawerBackgroundOpacity: Int = 100
-    private var recentsBackgroundOpacity: Int = 100
+    private var appDrawerBackgroundOpacity: Int = -1
+    private var recentsBackgroundOpacity: Int = -1
     private var disableRecentsLiveTile: Boolean = false
 
     override fun updatePrefs(vararg key: String) {
         Xprefs.apply {
-            appDrawerBackgroundOpacity =
-                getSliderInt(APP_DRAWER_BACKGROUND_OPACITY, 100) * 255 / 100
-            recentsBackgroundOpacity = getSliderInt(RECENTS_BACKGROUND_OPACITY, 100) * 255 / 100
+            appDrawerBackgroundOpacity = getSliderInt(APP_DRAWER_BACKGROUND_OPACITY, -1) * 255 / 100
+            recentsBackgroundOpacity = getSliderInt(RECENTS_BACKGROUND_OPACITY, -1) * 255 / 100
             disableRecentsLiveTile = getBoolean(DISABLE_RECENTS_LIVE_TILE, false)
         }
     }
@@ -48,6 +47,8 @@ class OpacityModifier(context: Context) : ModPack(context) {
         activityAllAppsContainerViewClass
             .hookMethod("updateHeaderScroll")
             .runAfter { param ->
+                if (appDrawerBackgroundOpacity < 0) return@runAfter
+
                 if (appDrawerBackgroundOpacity != 255) {
                     param.thisObject.setFieldSilently("mHeaderColor", Color.TRANSPARENT)
                     param.thisObject.callMethodSilently("invalidateHeader")
@@ -57,6 +58,8 @@ class OpacityModifier(context: Context) : ModPack(context) {
         allAppsStateClass
             .hookMethod("getWorkspaceScrimColor")
             .runAfter { param ->
+                if (appDrawerBackgroundOpacity < 0) return@runAfter
+
                 val isTablet = param.args[0]
                     .callMethodSilently("getDeviceProfile")
                     .getFieldSilently("isTablet") as? Boolean == true
@@ -72,6 +75,8 @@ class OpacityModifier(context: Context) : ModPack(context) {
         overviewStateClass
             .hookMethod("getWorkspaceScrimColor")
             .runAfter { param ->
+                if (recentsBackgroundOpacity < 0) return@runAfter
+
                 param.result = ColorUtils.setAlphaComponent(
                     param.result as Int,
                     recentsBackgroundOpacity
@@ -81,6 +86,8 @@ class OpacityModifier(context: Context) : ModPack(context) {
         quickSwitchStateClass
             .hookMethod("getWorkspaceScrimColor")
             .runAfter { param ->
+                if (recentsBackgroundOpacity < 0) return@runAfter
+
                 val launcher = param.args[0]
                 val deviceProfile = launcher.callMethod("getDeviceProfile")
                 val isTaskbarPresentInApps =
@@ -99,6 +106,8 @@ class OpacityModifier(context: Context) : ModPack(context) {
         recentsStateClass
             .hookMethod("getScrimColor")
             .runAfter { param ->
+                if (recentsBackgroundOpacity < 0) return@runAfter
+
                 param.result = ColorUtils.setAlphaComponent(
                     param.result as Int,
                     recentsBackgroundOpacity
@@ -108,6 +117,8 @@ class OpacityModifier(context: Context) : ModPack(context) {
         hintStateClass
             .hookMethod("getWorkspaceScrimColor")
             .runAfter { param ->
+                if (recentsBackgroundOpacity < 0) return@runAfter
+
                 param.result = ColorUtils.setAlphaComponent(
                     param.result as Int,
                     recentsBackgroundOpacity
