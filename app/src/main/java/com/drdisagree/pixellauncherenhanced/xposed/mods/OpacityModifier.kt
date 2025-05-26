@@ -38,7 +38,10 @@ class OpacityModifier(context: Context) : ModPack(context) {
         val quickSwitchStateClass =
             findClass("com.android.launcher3.uioverrides.states.QuickSwitchState")
         val recentsStateClass = findClass("com.android.quickstep.fallback.RecentsState")
-        val hintStateClass = findClass("com.android.launcher3.states.HintState")
+        val hintStateClass = findClass(
+            "com.android.launcher3.states.HintState",
+            "com.android.launcher3.uioverrides.states.HintState"
+        )
         val activityAllAppsContainerViewClass =
             findClass("com.android.launcher3.allapps.ActivityAllAppsContainerView")
 
