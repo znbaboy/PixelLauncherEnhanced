@@ -49,6 +49,7 @@ object Constants {
     const val APP_BLOCK_LIST = "xposed_appblocklist"
     const val SEARCH_HIDDEN_APPS = "xposed_searchhiddenapps"
     const val REMOVE_ICON_BADGE = "xposed_removeiconbadge"
+    const val RECENTS_REMOVE_SCREENSHOT_BUTTON = "xposed_recentsremovescreenshotbutton"
 
     val PREF_UPDATE_EXCLUSIONS = listOf(
         BootLoopProtector.LOAD_TIME_KEY_KEY,
