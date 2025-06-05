@@ -13,6 +13,13 @@
         app:iconSpaceReserved="false" />
 
     <com.drdisagree.pixellauncherenhanced.ui.preferences.SwitchPreference
+        android:key="xposed_recentsremovescreenshotbutton"
+        android:title="@string/recents_remove_screenshot_title"
+        android:summary="@string/recents_remove_screenshot_summary"
+        android:defaultValue="false"
+        app:iconSpaceReserved="false" />
+
+    <com.drdisagree.pixellauncherenhanced.ui.preferences.SwitchPreference
         android:key="xposed_disablerecentslivetile"
         android:summary="@string/disable_recents_live_tile_desc"
         android:title="@string/disable_recents_live_tile_title"

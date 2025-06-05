@@ -36,7 +36,7 @@ object PrefsHelper {
     }
 
     @SuppressLint("DefaultLocale")
-    fun getSummary(fragmentCompat: Context, key: String): String? {
+    fun getSummary(context: Context, key: String): String? {
         when {
             key.endsWith("Slider") -> {
                 val value = String.format("%.2f", getSliderFloat(key, 0f))
