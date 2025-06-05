@@ -33,6 +33,7 @@ Pixel Launcher Enhanced is an Xposed module designed to unlock a variety of exci
 |-------------------------|:--------------:|:------------------:|
 | Lock layout             |       ✅        |         ✅          |
 | Double tap to sleep     |       ✅        |         ✅          |
+| Wallpaper zooming       |       ✅        |         ✅          |
 | Hide statusbar          |       ✅        |         ✅          |
 | Hide top shadow         |       ✅        |         ✅          |
 | Icon labels on desktop  |       ✅        |         ✅          |
@@ -66,6 +67,7 @@ Pixel Launcher Enhanced is an Xposed module designed to unlock a variety of exci
 | Feature                    | Pixel Launcher | Launcher3 Launcher |
 |----------------------------|:--------------:|:------------------:|
 | Clear all button           |       ✅        |         ✅          |
+| Remove screenshot button   |       ✅        |         ✅          |
 | Disable recents live tile  |       ✅        |         ✅          |
 | Recents background opacity |       ✅        |         ✅          |
 
