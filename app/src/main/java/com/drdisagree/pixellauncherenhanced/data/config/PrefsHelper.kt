@@ -6,7 +6,14 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceGroup
 import com.drdisagree.pixellauncherenhanced.data.common.Constants.DEVELOPER_OPTIONS
 import com.drdisagree.pixellauncherenhanced.data.common.Constants.FIXED_RECENTS_BUTTONS_WIDTH
+import com.drdisagree.pixellauncherenhanced.data.common.Constants.FOLDER_CUSTOM_COLOR_DARK
+import com.drdisagree.pixellauncherenhanced.data.common.Constants.FOLDER_CUSTOM_COLOR_LIGHT
 import com.drdisagree.pixellauncherenhanced.data.common.Constants.RECENTS_CLEAR_ALL_BUTTON
+import com.drdisagree.pixellauncherenhanced.data.common.Constants.THEMED_ICON_CUSTOM_BG_COLOR_DARK
+import com.drdisagree.pixellauncherenhanced.data.common.Constants.THEMED_ICON_CUSTOM_BG_COLOR_LIGHT
+import com.drdisagree.pixellauncherenhanced.data.common.Constants.THEMED_ICON_CUSTOM_COLOR
+import com.drdisagree.pixellauncherenhanced.data.common.Constants.THEMED_ICON_CUSTOM_FG_COLOR_DARK
+import com.drdisagree.pixellauncherenhanced.data.common.Constants.THEMED_ICON_CUSTOM_FG_COLOR_LIGHT
 import com.drdisagree.pixellauncherenhanced.data.common.Constants.XPOSED_HOOK_CHECK
 import com.drdisagree.pixellauncherenhanced.data.config.RPrefs.getBoolean
 import com.drdisagree.pixellauncherenhanced.data.config.RPrefs.getSliderFloat
@@ -24,6 +31,14 @@ object PrefsHelper {
             DEVELOPER_OPTIONS -> isPixelLauncher
 
             FIXED_RECENTS_BUTTONS_WIDTH -> getBoolean(RECENTS_CLEAR_ALL_BUTTON)
+
+            THEMED_ICON_CUSTOM_FG_COLOR_LIGHT,
+            THEMED_ICON_CUSTOM_BG_COLOR_LIGHT,
+            THEMED_ICON_CUSTOM_FG_COLOR_DARK,
+            THEMED_ICON_CUSTOM_BG_COLOR_DARK -> getBoolean(THEMED_ICON_CUSTOM_COLOR)
+
+            FOLDER_CUSTOM_COLOR_LIGHT,
+            FOLDER_CUSTOM_COLOR_DARK -> isPixelLauncher && getBoolean(THEMED_ICON_CUSTOM_COLOR)
 
             else -> true
         }

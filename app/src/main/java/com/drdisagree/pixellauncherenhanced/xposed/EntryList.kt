@@ -19,6 +19,7 @@ import com.drdisagree.pixellauncherenhanced.xposed.mods.OpacityModifier
 import com.drdisagree.pixellauncherenhanced.xposed.mods.ShortcutBadge
 import com.drdisagree.pixellauncherenhanced.xposed.mods.SmartSpace
 import com.drdisagree.pixellauncherenhanced.xposed.mods.ThemedIcons
+import com.drdisagree.pixellauncherenhanced.xposed.mods.ThemedIconsColor
 import com.drdisagree.pixellauncherenhanced.xposed.mods.TopShadow
 import com.drdisagree.pixellauncherenhanced.xposed.mods.WallpaperZoom
 import com.drdisagree.pixellauncherenhanced.xposed.utils.BroadcastHook
@@ -31,6 +32,7 @@ object EntryList {
         IconUpdater::class.java,
         IconLabels::class.java,
         ThemedIcons::class.java,
+        ThemedIconsColor::class.java,
         OpacityModifier::class.java,
         GestureMod::class.java,
         HotseatMod::class.java,

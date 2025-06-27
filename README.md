@@ -14,6 +14,10 @@ Pixel Launcher Enhanced is an Xposed module designed to unlock a variety of exci
 
 # 🌟 Feature List
 
+> ✅ Fully supported
+> ⚠️ Partially supported
+> 🚫 Not supported
+
 <details>
 <summary>Icons</summary>
 
@@ -23,6 +27,7 @@ Pixel Launcher Enhanced is an Xposed module designed to unlock a variety of exci
 | Remove shortcut icon badge |       ✅        |         ✅          |
 | Icon size                  |       ✅        |         ✅          |
 | Text size                  |       ✅        |         ✅          |
+| Custom themed icon color   |       ✅        |         ⚠️         |
 
 </details>
 

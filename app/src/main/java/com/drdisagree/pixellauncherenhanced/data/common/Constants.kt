@@ -50,6 +50,13 @@ object Constants {
     const val SEARCH_HIDDEN_APPS = "xposed_searchhiddenapps"
     const val REMOVE_ICON_BADGE = "xposed_removeiconbadge"
     const val RECENTS_REMOVE_SCREENSHOT_BUTTON = "xposed_recentsremovescreenshotbutton"
+    const val THEMED_ICON_CUSTOM_COLOR = "xposed_themediconcustomcolor"
+    const val THEMED_ICON_CUSTOM_FG_COLOR_LIGHT = "xposed_themediconcustomfgcolorlight"
+    const val THEMED_ICON_CUSTOM_BG_COLOR_LIGHT = "xposed_themediconcustombgcolorlight"
+    const val THEMED_ICON_CUSTOM_FG_COLOR_DARK = "xposed_themediconcustomfgcolordark"
+    const val THEMED_ICON_CUSTOM_BG_COLOR_DARK = "xposed_themediconcustombgcolordark"
+    const val FOLDER_CUSTOM_COLOR_LIGHT = "xposed_foldercustomcolorlight"
+    const val FOLDER_CUSTOM_COLOR_DARK = "xposed_foldercustomcolordark"
 
     val PREF_UPDATE_EXCLUSIONS = listOf(
         BootLoopProtector.LOAD_TIME_KEY_KEY,
