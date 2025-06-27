@@ -46,6 +46,7 @@ Pixel Launcher Enhanced is an Xposed module designed to unlock a variety of exci
 | Homescreen rows         |       ✅        |         ✅          |
 | Hide At A Glance        |       ✅        |         ✅          |
 | Hide desktop search bar |       ✅        |         ✅          |
+| Search bar opacity      |       ✅        |         🚫         |
 | Dock spacing            |       ✅        |         ✅          |
 
 </details>

@@ -57,6 +57,7 @@ object Constants {
     const val THEMED_ICON_CUSTOM_BG_COLOR_DARK = "xposed_themediconcustombgcolordark"
     const val FOLDER_CUSTOM_COLOR_LIGHT = "xposed_foldercustomcolorlight"
     const val FOLDER_CUSTOM_COLOR_DARK = "xposed_foldercustomcolordark"
+    const val DESKTOP_SEARCH_BAR_OPACITY = "xposed_desktopsearchbaropacity"
 
     val PREF_UPDATE_EXCLUSIONS = listOf(
         BootLoopProtector.LOAD_TIME_KEY_KEY,
