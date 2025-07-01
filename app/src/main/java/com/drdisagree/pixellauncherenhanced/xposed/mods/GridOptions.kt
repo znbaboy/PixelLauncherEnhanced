@@ -29,7 +29,7 @@ class GridOptions (context: Context) : ModPack(context) {
             homeScreenGridColumns = getSliderInt(DESKTOP_GRID_COLUMNS, 0)
             appDrawerGridColumns = getSliderInt(APP_DRAWER_GRID_COLUMNS, 0)
             appDrawerGridRowHeightMultiplier =
-                getSliderInt(APP_DRAWER_GRID_ROW_HEIGHT_MULTIPLIER, 10) / 10f
+                getSliderFloat(APP_DRAWER_GRID_ROW_HEIGHT_MULTIPLIER, 10f) / 10f
         }
 
         when (key.firstOrNull()) {
