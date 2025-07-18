@@ -22,6 +22,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Pixel Launcher Enhanced"
+rootProject.name = "PLEnhanced"
 include(":app")
  
