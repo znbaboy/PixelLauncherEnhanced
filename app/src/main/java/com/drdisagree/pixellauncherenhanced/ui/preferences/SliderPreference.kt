@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.core.content.edit
 import androidx.preference.Preference
 import androidx.preference.PreferenceViewHolder
@@ -50,6 +51,7 @@ class SliderPreference(
     private var mSlider: RangeSlider? = null
     private var mTitleView: TextView? = null
     private var mSummaryView: TextView? = null
+    private var mOutputView: TextView? = null
     private var mMinusButton: MaterialButton? = null
     private var mPlusButton: MaterialButton? = null
     private var mResetButton: MaterialButton? = null
@@ -131,6 +133,7 @@ class SliderPreference(
 
         mTitleView = holder.itemView.findViewById(android.R.id.title)
         mSummaryView = holder.itemView.findViewById(android.R.id.summary)
+        mOutputView = holder.itemView.findViewById(R.id.output)
         mSlider = holder.itemView.findViewById(R.id.slider)
 
         mSlider!!.tag = key
@@ -153,11 +156,12 @@ class SliderPreference(
                 mSlider!!.values = defaultValue
                 mResetButton!!.isEnabled = false
 
-                mSummaryView!!.apply {
-                    text = mSlider!!.values.joinToString(separator = " - ") { sliderValue ->
+                mOutputView!!.text = context.getString(
+                    R.string.value_output,
+                    mSlider!!.values.joinToString(separator = " - ") { sliderValue ->
                         labelFormatter.getFormattedValue(sliderValue)
                     }
-                }
+                )
 
                 if (showController) updateControllerButtons()
 
@@ -178,10 +182,12 @@ class SliderPreference(
 
                 val newValue = (currentValue - tickInterval).coerceAtLeast(valueFrom)
                 mSlider!!.values = listOf(newValue)
-                mSummaryView!!.text =
+                mOutputView!!.text = context.getString(
+                    R.string.value_output,
                     mSlider!!.values.joinToString(separator = " - ") { sliderValue ->
                         labelFormatter.getFormattedValue(sliderValue)
                     }
+                )
 
                 updateControllerButtons()
                 handleResetButton()
@@ -195,10 +201,12 @@ class SliderPreference(
 
                 val newValue = (currentValue + tickInterval).coerceAtMost(valueTo)
                 mSlider!!.values = listOf(newValue)
-                mSummaryView!!.text =
+                mOutputView!!.text = context.getString(
+                    R.string.value_output,
                     mSlider!!.values.joinToString(separator = " - ") { sliderValue ->
                         labelFormatter.getFormattedValue(sliderValue)
                     }
+                )
 
                 updateControllerButtons()
                 handleResetButton()
@@ -218,10 +226,13 @@ class SliderPreference(
 
         syncState()
 
-        mSummaryView!!.apply {
-            text = mSlider!!.values.joinToString(separator = " - ") { sliderValue ->
+        mOutputView!!.apply {
+            text = context.getString(
+                R.string.value_output,
+                mSlider!!.values.joinToString(separator = " - ") { sliderValue ->
                 labelFormatter.getFormattedValue(sliderValue)
-            }
+                }
+            )
             visibility = if (showValueLabel) View.VISIBLE else View.GONE
         }
 
@@ -300,6 +311,17 @@ class SliderPreference(
             if (needsCommit) savePrefs()
         } catch (_: Throwable) {
         }
+    }
+
+    override fun setEnabled(enabled: Boolean) {
+        super.setEnabled(enabled)
+
+        mTitleView?.apply {
+            isEnabled = enabled
+            alpha = if (enabled) 1f else 0.5f
+            setTextColor(ContextCompat.getColor(context, R.color.text_color_primary))
+        }
+        handleResetButton()
     }
 
     private fun updateControllerButtons() {

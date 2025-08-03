@@ -10,6 +10,9 @@ import com.drdisagree.pixellauncherenhanced.data.common.Constants.DEVELOPER_OPTI
 import com.drdisagree.pixellauncherenhanced.data.common.Constants.FIXED_RECENTS_BUTTONS_WIDTH
 import com.drdisagree.pixellauncherenhanced.data.common.Constants.FOLDER_CUSTOM_COLOR_DARK
 import com.drdisagree.pixellauncherenhanced.data.common.Constants.FOLDER_CUSTOM_COLOR_LIGHT
+import com.drdisagree.pixellauncherenhanced.data.common.Constants.FREEFORM_GESTURE
+import com.drdisagree.pixellauncherenhanced.data.common.Constants.FREEFORM_GESTURE_PROGRESS
+import com.drdisagree.pixellauncherenhanced.data.common.Constants.FREEFORM_MODE
 import com.drdisagree.pixellauncherenhanced.data.common.Constants.RECENTS_CLEAR_ALL_BUTTON
 import com.drdisagree.pixellauncherenhanced.data.common.Constants.THEMED_ICON_CUSTOM_BG_COLOR_DARK
 import com.drdisagree.pixellauncherenhanced.data.common.Constants.THEMED_ICON_CUSTOM_BG_COLOR_LIGHT
@@ -43,6 +46,9 @@ object PrefsHelper {
             FOLDER_CUSTOM_COLOR_DARK -> isPixelLauncher && getBoolean(THEMED_ICON_CUSTOM_COLOR)
 
             DESKTOP_SEARCH_BAR_OPACITY -> isPixelLauncher && !getBoolean(DESKTOP_SEARCH_BAR)
+
+            FREEFORM_GESTURE_PROGRESS,
+            FREEFORM_MODE -> getBoolean(FREEFORM_GESTURE)
 
             else -> true
         }

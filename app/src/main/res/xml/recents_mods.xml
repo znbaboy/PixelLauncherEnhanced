@@ -27,42 +27,31 @@
 
     <com.drdisagree.pixellauncherenhanced.ui.preferences.SwitchPreference
         android:key="xposed_startfreeformbygesture"
-        android:title="@string/start_freeform_gesture_title"
+        android:summary="@string/freeform_gesture_summary"
+        android:title="@string/freeform_gesture_title"
         app:iconSpaceReserved="false" />
 
     <com.drdisagree.pixellauncherenhanced.ui.preferences.SliderPreference
         android:key="xposed_startfreeformprogress"
-        android:title="@string/start_freeform_gesture_progress_title"
+        android:summary="@string/freeform_gesture_progress_summary"
+        android:title="@string/freeform_gesture_progress_title"
         app:defaultValue="3"
-        app:hideValueOnDefault="true"
         app:iconSpaceReserved="false"
         app:decimalFormat="#.#"
         app:isDecimalFormat="true"
         app:maxVal="5"
         app:minVal="1"
-        app:showDefaultIndicator="true"
         app:showResetButton="true"
         app:tickInterval="0.1" />
+
     <com.drdisagree.pixellauncherenhanced.ui.preferences.ListPreference
         android:key="xposed_freeform_mode"
-        android:title="@string/start_freeform_mode_title"
-        android:summary="@string/start_freeform_mode_summary"
-        android:dialogTitle="@string/freeform_mode_dialog_title"
-        android:defaultValue="1"
+        android:defaultValue="0"
+        android:dialogTitle="@string/freeform_method_title"
+        android:entries="@array/freeform_mode_str"
+        android:summary="@string/freeform_method_summary"
         android:entryValues="@array/freeform_mode_value"
-        android:entries="@array/freeform_mode_str"/>
-                
-    <com.drdisagree.pixellauncherenhanced.ui.preferences.SliderPreference
-        android:key="xposed_recentsbackgroundopacity"
-        android:title="@string/recents_background_opacity_title"
-        app:defaultValue="-1"
-        app:hideValueOnDefault="true"
-        app:iconSpaceReserved="false"
-        app:maxVal="100"
-        app:minVal="-1"
-        app:showDefaultIndicator="true"
-        app:showResetButton="true"
-        app:tickInterval="1"
-        app:valueFormat="%" />    
+        android:title="@string/freeform_method_title"
+        app:iconSpaceReserved="false" />
 
 </PreferenceScreen>

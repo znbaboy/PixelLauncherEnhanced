@@ -15,9 +15,6 @@ object Constants {
 
     // Preferences
     const val VIBRATE_UI = "vibrate_ui"
-    const val FREEFORM_MODE = "xposed_freeform_mode"
-    const val FREEFORM_GESTURE = "xposed_startfreeformbygesture"
-    const val FREEFORM_GESTURE_PROGRESS = "xposed_startfreeformprogress"
     const val XPOSED_HOOK_CHECK = "xposed_hook_check"
     const val ACTION_HOOK_CHECK_REQUEST = "${BuildConfig.APPLICATION_ID}.ACTION_HOOK_CHECK_REQUEST"
     const val ACTION_HOOK_CHECK_RESULT = "${BuildConfig.APPLICATION_ID}.ACTION_HOOK_CHECK_RESULT"
@@ -61,6 +58,9 @@ object Constants {
     const val FOLDER_CUSTOM_COLOR_LIGHT = "xposed_foldercustomcolorlight"
     const val FOLDER_CUSTOM_COLOR_DARK = "xposed_foldercustomcolordark"
     const val DESKTOP_SEARCH_BAR_OPACITY = "xposed_desktopsearchbaropacity"
+    const val FREEFORM_GESTURE = "xposed_startfreeformbygesture"
+    const val FREEFORM_MODE = "xposed_freeform_mode"
+    const val FREEFORM_GESTURE_PROGRESS = "xposed_startfreeformprogress"
 
     val PREF_UPDATE_EXCLUSIONS = listOf(
         BootLoopProtector.LOAD_TIME_KEY_KEY,
