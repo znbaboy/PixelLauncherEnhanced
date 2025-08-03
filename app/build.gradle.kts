@@ -13,7 +13,7 @@ android {
         targetSdk = 35
         versionCode = 4
         versionName = "1.0.3"
-        setProperty("archivesBaseName", "PLEnhanced v${defaultConfig.versionName}")
+        base.archivesName = "PLEnhanced v${defaultConfig.versionName}"
     }
 
     buildTypes {
@@ -29,10 +29,11 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions {
-        jvmTarget = "17"
+    
+    kotlin {
+        jvmToolchain(17)
     }
-
+    
     buildFeatures {
         viewBinding = true
         buildConfig = true

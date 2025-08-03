@@ -3,6 +3,7 @@ package com.drdisagree.pixellauncherenhanced.xposed.utils
 import android.content.Context
 import com.crossbowffs.remotepreferences.RemotePreferences
 import com.drdisagree.pixellauncherenhanced.ui.preferences.SliderPreference
+import com.drdisagree.pixellauncherenhanced.ui.preferences.ListPreference
 
 @Suppress("unused")
 class ExtendedRemotePreferences : RemotePreferences {
@@ -34,5 +35,8 @@ class ExtendedRemotePreferences : RemotePreferences {
 
     fun getSliderValues(key: String?, defaultValue: Float): List<Float> {
         return SliderPreference.getValues(this, key, defaultValue)
+    }
+    fun getListString(key: String?, defaultValue: String): String? {
+        return this.getString(key, defaultValue)
     }
 }

@@ -11,6 +11,7 @@ import de.robv.android.xposed.XposedBridge.hookAllConstructors
 import de.robv.android.xposed.XposedBridge.hookAllMethods
 import de.robv.android.xposed.XposedBridge.hookMethod
 import de.robv.android.xposed.XposedHelpers
+import de.robv.android.xposed.XposedHelpers.newInstance
 import de.robv.android.xposed.XposedHelpers.findAndHookConstructor
 import de.robv.android.xposed.XposedHelpers.findAndHookMethod
 import de.robv.android.xposed.XposedHelpers.getStaticObjectField
@@ -61,6 +62,10 @@ class XposedHook {
             }
 
             return null
+        }
+        
+        fun newInstance(name: String): Any? {
+            return XposedHelpers.newInstance(findClass(name))
         }
     }
 }
@@ -774,6 +779,7 @@ fun Class<*>?.callStaticMethodSilently(
         null
     }
 }
+
 
 fun Any?.getField(fieldName: String): Any {
     if (this == null) throw NoSuchFieldError("Field not found: $fieldName, object is null")

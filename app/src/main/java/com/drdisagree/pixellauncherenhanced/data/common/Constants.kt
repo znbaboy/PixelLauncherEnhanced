@@ -15,6 +15,9 @@ object Constants {
 
     // Preferences
     const val VIBRATE_UI = "vibrate_ui"
+    const val FREEFORM_MODE = "xposed_freeform_mode"
+    const val FREEFORM_GESTURE = "xposed_startfreeformbygesture"
+    const val FREEFORM_GESTURE_PROGRESS = "xposed_startfreeformprogress"
     const val XPOSED_HOOK_CHECK = "xposed_hook_check"
     const val ACTION_HOOK_CHECK_REQUEST = "${BuildConfig.APPLICATION_ID}.ACTION_HOOK_CHECK_REQUEST"
     const val ACTION_HOOK_CHECK_RESULT = "${BuildConfig.APPLICATION_ID}.ACTION_HOOK_CHECK_RESULT"

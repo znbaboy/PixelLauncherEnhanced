@@ -1,6 +1,10 @@
 <resources>
-    <string name="app_name" translatable="false">Pixel Launcher Enhanced</string>
-    <string name="app_name_shortened" translatable="false">PLEnhanced</string>
+    <string
+            name="app_name"
+            translatable="false">Pixel Launcher Enhanced</string>
+    <string
+            name="app_name_shortened"
+            translatable="false">PLEnhanced</string>
     <string name="app_motto">Unleash the full potential of your launcher</string>
 
     <string name="icon">Icon</string>
@@ -9,9 +13,15 @@
     <string name="learn_more">Learn more</string>
     <string name="attention">Attention</string>
     <string name="opt_default">(Default)</string>
-    <string name="opt_selected1" translatable="false">%s</string>
-    <string name="opt_selected2" translatable="false">%1$s%2$s</string>
-    <string name="opt_selected3" translatable="false">%1$s%2$s %3$s</string>
+    <string
+            name="opt_selected1"
+            translatable="false">%s</string>
+    <string
+            name="opt_selected2"
+            translatable="false">%1$s%2$s</string>
+    <string
+            name="opt_selected3"
+            translatable="false">%1$s%2$s %3$s</string>
     <string name="btn_pick_image">Pick image</string>
     <string name="understood">Understood</string>
     <string name="settings_title">Settings</string>
@@ -27,11 +37,15 @@
     <string name="xposed_module_bootlooped_desc">Module has been disabled</string>
     <string name="force_close_launcher">Force close launcher</string>
 
-    <string name="version_codes" translatable="false">%s (#%d)</string>
+    <string
+            name="version_codes"
+            translatable="false">%s (#%d)</string>
     <string name="news">News</string>
     <string name="support">Support</string>
     <string name="github">GitHub</string>
-    <string name="dev_name" translatable="false">DrDisagree</string>
+    <string
+            name="dev_name"
+            translatable="false">DrDisagree</string>
     <string name="dev_bio">Learner | Developer | Designer</string>
     <string name="buymeacoffee_title">Enjoying this app?</string>
     <string name="buymeacoffee_desc">Consider buying me a coffee</string>
@@ -92,6 +106,11 @@
     <string name="fixed_button_width_title">Fixed width for each button</string>
     <string name="recents_remove_screenshot_title">Remove screenshot button</string>
     <string name="recents_remove_screenshot_summary">Hides the screenshot button in the recent apps overview</string>
+    <string name="start_freeform_mode_title">Choose the way to start Freeform</string>
+    <string name="start_freeform_mode_summary">Pls change it till work on your ROMs</string>
+    <string name="start_freeform_gesture_title">Start Freeform in Recents View by gesture</string>
+    <string name="start_freeform_gesture_progress_title">Set the key value where you set off your gesture</string>
+    <string name="freeform_mode_dialog_title">Choose the implement of freeform</string>
     <string name="recents_clear_all">Clear all</string>
     <string name="homescreen_columns_title">Homescreen columns</string>
     <string name="homescreen_rows_title">Homescreen rows</string>
@@ -112,4 +131,18 @@
     <string name="folder_color_light_title">Folder color in light mode</string>
     <string name="folder_color_dark_title">Folder color in dark mode</string>
     <string name="search_bar_opacity_title">Search bar opacity</string>
+    
+    <string-array name="freeform_mode_str">
+        <item>AOSP Origin</item>
+        <item>sunshine mifreeform</item>
+        <item>LMO</item>
+        <item>YAMF</item>
+    </string-array>
+    <string-array name="freeform_mode_value">
+        <item>"0"</item>
+        <item>"1"</item>
+        <item>"2"</item>
+        <item>"3"</item>
+    </string-array>
+    
 </resources>
