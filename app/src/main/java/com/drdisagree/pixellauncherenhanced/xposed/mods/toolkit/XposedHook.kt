@@ -62,6 +62,12 @@ class XposedHook {
 
             return null
         }
+
+        fun Class<*>?.newInstance(): Any? {
+            if (this == null) return null
+
+            return XposedHelpers.newInstance(this)
+        }
     }
 }
 

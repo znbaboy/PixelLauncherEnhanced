@@ -4,6 +4,7 @@ import com.drdisagree.pixellauncherenhanced.data.common.Constants.LAUNCHER3_PACK
 import com.drdisagree.pixellauncherenhanced.data.common.Constants.PIXEL_LAUNCHER_PACKAGE
 import com.drdisagree.pixellauncherenhanced.xposed.mods.ClearAllButton
 import com.drdisagree.pixellauncherenhanced.xposed.mods.DrawerSearchbar
+import com.drdisagree.pixellauncherenhanced.xposed.mods.FreeformMod
 import com.drdisagree.pixellauncherenhanced.xposed.mods.GestureMod
 import com.drdisagree.pixellauncherenhanced.xposed.mods.GridOptions
 import com.drdisagree.pixellauncherenhanced.xposed.mods.HideApps
@@ -36,6 +37,7 @@ object EntryList {
         OpacityModifier::class.java,
         GestureMod::class.java,
         HotseatMod::class.java,
+        FreeformMod::class.java,
         IconTextSize::class.java,
         SmartSpace::class.java,
         HideStatusbar::class.java,

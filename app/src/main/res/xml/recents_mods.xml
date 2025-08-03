@@ -25,17 +25,33 @@
         android:title="@string/disable_recents_live_tile_title"
         app:iconSpaceReserved="false" />
 
+    <com.drdisagree.pixellauncherenhanced.ui.preferences.SwitchPreference
+        android:key="xposed_startfreeformbygesture"
+        android:summary="@string/freeform_gesture_summary"
+        android:title="@string/freeform_gesture_title"
+        app:iconSpaceReserved="false" />
+
     <com.drdisagree.pixellauncherenhanced.ui.preferences.SliderPreference
-        android:key="xposed_recentsbackgroundopacity"
-        android:title="@string/recents_background_opacity_title"
-        app:defaultValue="-1"
-        app:hideValueOnDefault="true"
+        android:key="xposed_startfreeformprogress"
+        android:summary="@string/freeform_gesture_progress_summary"
+        android:title="@string/freeform_gesture_progress_title"
+        app:defaultValue="3"
         app:iconSpaceReserved="false"
-        app:maxVal="100"
-        app:minVal="-1"
-        app:showDefaultIndicator="true"
+        app:decimalFormat="#.#"
+        app:isDecimalFormat="true"
+        app:maxVal="5"
+        app:minVal="1"
         app:showResetButton="true"
-        app:tickInterval="1"
-        app:valueFormat="%" />
+        app:tickInterval="0.1" />
+
+    <com.drdisagree.pixellauncherenhanced.ui.preferences.ListPreference
+        android:key="xposed_freeform_mode"
+        android:defaultValue="0"
+        android:dialogTitle="@string/freeform_method_title"
+        android:entries="@array/freeform_mode_str"
+        android:summary="@string/freeform_method_summary"
+        android:entryValues="@array/freeform_mode_value"
+        android:title="@string/freeform_method_title"
+        app:iconSpaceReserved="false" />
 
 </PreferenceScreen>
