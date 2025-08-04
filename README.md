@@ -76,6 +76,7 @@ Pixel Launcher Enhanced is an Xposed module designed to unlock a variety of exci
 | Remove screenshot button   |       ✅        |         ✅          |
 | Disable recents live tile  |       ✅        |         ✅          |
 | Recents background opacity |       ✅        |         ✅          |
+| Freeform mode gesture      |       ✅        |         ✅          |
 
 </details>
 
