@@ -81,6 +81,12 @@
     <string name="fixed_button_width_title">每个按钮的固定宽度</string>
     <string name="recents_remove_screenshot_title">删除屏幕截图按钮</string>
     <string name="recents_remove_screenshot_summary">隐藏在最近任务中的屏幕截图按钮</string>
+    <string name="freeform_gesture_title">在最近任务中使用手势启动可自由调整的窗口模式</string>
+    <string name="freeform_gesture_summary">从应用程序向上滑动并在屏幕顶部显示可自由调整的窗口模式（需要在开发者选项中启用可自由调整的窗口的开关）</string>
+    <string name="freeform_gesture_progress_title">自由窗口滑动阈值</string>
+    <string name="freeform_gesture_progress_summary">较低的值会在更早的时候触发自由窗口，较高的值需要滑动到屏幕顶部区域</string>
+    <string name="freeform_method_title">选择启动自由窗口的模式</string>
+    <string name="freeform_method_summary">如果在您的 ROM 上不起作用，请更改这个选项</string>
     <string name="recents_clear_all">清除所有</string>
     <string name="homescreen_columns_title">屏幕图标列数</string>
     <string name="homescreen_rows_title">屏幕图标行数</string>
@@ -101,4 +107,5 @@
     <string name="folder_color_light_title">浅色模式下的文件夹颜色</string>
     <string name="folder_color_dark_title">深色模式下的文件夹颜色</string>
     <string name="search_bar_opacity_title">搜索栏透明度</string>
+    <string name="value_output">值大小</string>
 </resources>

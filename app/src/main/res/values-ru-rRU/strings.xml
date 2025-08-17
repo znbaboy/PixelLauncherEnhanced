@@ -81,6 +81,12 @@
     <string name="fixed_button_width_title">Фиксированная ширина для каждой кнопки</string>
     <string name="recents_remove_screenshot_title">Убрать кнопку скриншота</string>
     <string name="recents_remove_screenshot_summary">Скрывает кнопку скриншота при просмотре недавних приложений</string>
+    <string name="freeform_gesture_title">Использовать жест в недавних для запуска режима свободной формы</string>
+    <string name="freeform_gesture_summary">Проведите пальцем вверх по экрану приложения и отпустите его в верхней части экрана недавних, чтобы активировать режим свободной формы (требуется включение режима свободной формы в параметрах разработчика)</string>
+    <string name="freeform_gesture_progress_title">Порог плавного свайпа</string>
+    <string name="freeform_gesture_progress_summary">Более низкие значения активируют функцию Freeform раньше, более высокие значения требуют проведения пальцем ближе к верху</string>
+    <string name="freeform_method_title">Выберите метод свободной формы</string>
+    <string name="freeform_method_summary">Измените это, если не работает на вашей прошивке</string>
     <string name="recents_clear_all">Очистить</string>
     <string name="homescreen_columns_title">Столбцы на главном экране</string>
     <string name="homescreen_rows_title">Строки на главном экране</string>
@@ -101,4 +107,5 @@
     <string name="folder_color_light_title">Цвет папки в светлом режиме</string>
     <string name="folder_color_dark_title">Цвет папки в темном режиме</string>
     <string name="search_bar_opacity_title">Непрозрачность панели поиска</string>
+    <string name="value_output">Значение: %s</string>
 </resources>
