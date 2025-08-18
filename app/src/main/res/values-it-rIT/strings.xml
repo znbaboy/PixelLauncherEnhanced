@@ -81,6 +81,12 @@
     <string name="fixed_button_width_title">Fixed width for each button</string>
     <string name="recents_remove_screenshot_title">Remove screenshot button</string>
     <string name="recents_remove_screenshot_summary">Hides the screenshot button in the recent apps overview</string>
+    <string name="freeform_gesture_title">Use gesture in recents to start freeform mode</string>
+    <string name="freeform_gesture_summary">Swipe up from the app and release at the top of the recents screen to trigger freeform mode (requires freeform enabled in developer options)</string>
+    <string name="freeform_gesture_progress_title">Freeform swipe threshold</string>
+    <string name="freeform_gesture_progress_summary">Lower values trigger freeform earlier, higher values require swiping closer to the top</string>
+    <string name="freeform_method_title">Select freeform method</string>
+    <string name="freeform_method_summary">Change this if it doesn\'t work on your ROM</string>
     <string name="recents_clear_all">Clear all</string>
     <string name="homescreen_columns_title">Homescreen columns</string>
     <string name="homescreen_rows_title">Homescreen rows</string>
@@ -101,4 +107,5 @@
     <string name="folder_color_light_title">Folder color in light mode</string>
     <string name="folder_color_dark_title">Folder color in dark mode</string>
     <string name="search_bar_opacity_title">Search bar opacity</string>
+    <string name="value_output">Value: %s</string>
 </resources>
