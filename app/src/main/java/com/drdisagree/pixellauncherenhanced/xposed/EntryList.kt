@@ -19,6 +19,7 @@ import com.drdisagree.pixellauncherenhanced.xposed.mods.LockLayout
 import com.drdisagree.pixellauncherenhanced.xposed.mods.OpacityModifier
 import com.drdisagree.pixellauncherenhanced.xposed.mods.ShortcutBadge
 import com.drdisagree.pixellauncherenhanced.xposed.mods.SmartSpace
+import com.drdisagree.pixellauncherenhanced.xposed.mods.TaskbarHandle
 import com.drdisagree.pixellauncherenhanced.xposed.mods.ThemedIcons
 import com.drdisagree.pixellauncherenhanced.xposed.mods.ThemedIconsColor
 import com.drdisagree.pixellauncherenhanced.xposed.mods.TopShadow
@@ -49,7 +50,8 @@ object EntryList {
         GridOptions::class.java,
         HideApps::class.java,
         ShortcutBadge::class.java,
-        WallpaperZoom::class.java
+        WallpaperZoom::class.java,
+        TaskbarHandle::class.java
     )
 
     fun getEntries(packageName: String): ArrayList<Class<out ModPack>> {

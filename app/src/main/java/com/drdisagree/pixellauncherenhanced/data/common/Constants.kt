@@ -61,6 +61,7 @@ object Constants {
     const val FREEFORM_GESTURE = "xposed_startfreeformbygesture"
     const val FREEFORM_MODE = "xposed_freeform_mode"
     const val FREEFORM_GESTURE_PROGRESS = "xposed_startfreeformprogress"
+    const val HIDE_GESTURE_PILL = "xposed_hidegesturepill"
 
     val PREF_UPDATE_EXCLUSIONS = listOf(
         BootLoopProtector.LOAD_TIME_KEY_KEY,

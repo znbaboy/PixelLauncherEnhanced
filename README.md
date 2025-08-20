@@ -85,6 +85,7 @@ Pixel Launcher Enhanced is an Xposed module designed to unlock a variety of exci
 
 | Feature                         | Pixel Launcher | Launcher3 Launcher |
 |---------------------------------|:--------------:|:------------------:|
+| Hide gesture indicator          |       ✅        |         ✅          |
 | Show entry in launcher settings |       ✅        |         ✅          |
 | Developer options               |       ✅        |         🚫         |
 | Restart                         |       ✅        |         ✅          |
