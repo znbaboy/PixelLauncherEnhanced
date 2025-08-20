@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "com.drdisagree.pixellauncherenhanced"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.drdisagree.pixellauncherenhanced"
         minSdk = 26
-        targetSdk = 35
+        targetSdk = 36
         versionCode = 4
         versionName = "1.0.3"
         base.archivesName = "PLEnhanced v${defaultConfig.versionName}"
