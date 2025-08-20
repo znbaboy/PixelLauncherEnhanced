@@ -15,7 +15,6 @@ import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.callMethod
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.getField
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.getStaticField
 import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.hookMethod
-import com.drdisagree.pixellauncherenhanced.xposed.mods.toolkit.log
 import com.drdisagree.pixellauncherenhanced.xposed.utils.XPrefs.Xprefs
 import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam
 
@@ -52,7 +51,6 @@ class FreeformMod(context: Context) : ModPack(context) {
         absSwipeClass
             .hookMethod("initStateCallbacks")
             .runAfter { param ->
-                log("FreeformMod", "initStateCallbacks called")
                 if (!freeformEnabled) return@runAfter
 
                 val gestureStateClass = findClass("com.android.quickstep.GestureState")
