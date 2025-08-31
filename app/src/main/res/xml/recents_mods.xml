@@ -25,6 +25,19 @@
         android:title="@string/disable_recents_live_tile_title"
         app:iconSpaceReserved="false" />
 
+    <com.drdisagree.pixellauncherenhanced.ui.preferences.SliderPreference
+        android:key="xposed_recentsbackgroundopacity"
+        android:title="@string/recents_background_opacity_title"
+        app:defaultValue="-1"
+        app:hideValueOnDefault="true"
+        app:iconSpaceReserved="false"
+        app:maxVal="100"
+        app:minVal="-1"
+        app:showDefaultIndicator="true"
+        app:showResetButton="true"
+        app:tickInterval="1"
+        app:valueFormat="%" />
+
     <com.drdisagree.pixellauncherenhanced.ui.preferences.SwitchPreference
         android:key="xposed_startfreeformbygesture"
         android:summary="@string/freeform_gesture_summary"
