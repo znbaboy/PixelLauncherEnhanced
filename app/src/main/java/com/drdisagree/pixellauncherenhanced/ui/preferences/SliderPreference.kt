@@ -7,7 +7,6 @@ import android.util.JsonReader
 import android.util.JsonWriter
 import android.util.Log
 import android.view.View
-import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.content.edit
@@ -156,12 +155,7 @@ class SliderPreference(
                 mSlider!!.values = defaultValue
                 mResetButton!!.isEnabled = false
 
-                mOutputView!!.text = context.getString(
-                    R.string.value_output,
-                    mSlider!!.values.joinToString(separator = " - ") { sliderValue ->
-                        labelFormatter.getFormattedValue(sliderValue)
-                    }
-                )
+                mOutputView!!.text = getOutputText()
 
                 if (showController) updateControllerButtons()
 
@@ -182,12 +176,7 @@ class SliderPreference(
 
                 val newValue = (currentValue - tickInterval).coerceAtLeast(valueFrom)
                 mSlider!!.values = listOf(newValue)
-                mOutputView!!.text = context.getString(
-                    R.string.value_output,
-                    mSlider!!.values.joinToString(separator = " - ") { sliderValue ->
-                        labelFormatter.getFormattedValue(sliderValue)
-                    }
-                )
+                mOutputView!!.text = getOutputText()
 
                 updateControllerButtons()
                 handleResetButton()
@@ -201,12 +190,7 @@ class SliderPreference(
 
                 val newValue = (currentValue + tickInterval).coerceAtMost(valueTo)
                 mSlider!!.values = listOf(newValue)
-                mOutputView!!.text = context.getString(
-                    R.string.value_output,
-                    mSlider!!.values.joinToString(separator = " - ") { sliderValue ->
-                        labelFormatter.getFormattedValue(sliderValue)
-                    }
-                )
+                mOutputView!!.text = getOutputText()
 
                 updateControllerButtons()
                 handleResetButton()
@@ -226,21 +210,23 @@ class SliderPreference(
 
         syncState()
 
-        mOutputView!!.apply {
-            text = context.getString(
-                R.string.value_output,
-                mSlider!!.values.joinToString(separator = " - ") { sliderValue ->
-                labelFormatter.getFormattedValue(sliderValue)
-                }
-            )
-            visibility = if (showValueLabel) View.VISIBLE else View.GONE
-        }
+        mOutputView!!.text = getOutputText()
+
 
         if (showController) updateControllerButtons()
 
         handleResetButton()
 
         setFirstAndLastItemMargin(holder)
+    }
+
+    private fun getOutputText(): String {
+        val outputValue = mSlider!!.values.joinToString(separator = " - ") { sliderValue ->
+            labelFormatter.getFormattedValue(sliderValue)
+        }
+
+        return if (showValueLabel) context.getString(R.string.value_output, outputValue)
+        else outputValue
     }
 
     fun setMin(value: Float) {
@@ -387,11 +373,7 @@ class SliderPreference(
             override fun onStopTrackingTouch(slider: RangeSlider) {
                 if (key != slider.tag) return
 
-                val summary =
-                    (slider.parent.parent as ViewGroup).findViewById<TextView>(android.R.id.summary)
-                summary.text = labelFormatter.getFormattedValue(slider.values[0])
-                summary.visibility =
-                    if (showValueLabel) View.VISIBLE else View.GONE
+                mOutputView?.text = getOutputText()
 
                 if (showController) updateControllerButtons()
 

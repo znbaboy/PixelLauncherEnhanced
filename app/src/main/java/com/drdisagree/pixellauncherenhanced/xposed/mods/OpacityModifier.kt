@@ -43,6 +43,10 @@ class OpacityModifier(context: Context) : ModPack(context) {
         )
         val activityAllAppsContainerViewClass =
             findClass("com.android.launcher3.allapps.ActivityAllAppsContainerView")
+        val scrimColorsClass = findClass(
+            "com.android.launcher3.views.ScrimColors",
+            suppressError = true
+        )
 
         activityAllAppsContainerViewClass
             .hookMethod("updateHeaderScroll")
@@ -65,10 +69,18 @@ class OpacityModifier(context: Context) : ModPack(context) {
                     .getFieldSilently("isTablet") as? Boolean == true
 
                 if (!isTablet) {
-                    param.result = ColorUtils.setAlphaComponent(
-                        param.result as Int,
-                        appDrawerBackgroundOpacity
-                    )
+                    if (param.result is Int) {
+                        param.result = ColorUtils.setAlphaComponent(
+                            param.result as Int,
+                            appDrawerBackgroundOpacity
+                        )
+                    } else {
+                        param.result = getScrimColors(
+                            param.result,
+                            scrimColorsClass!!,
+                            appDrawerBackgroundOpacity
+                        )
+                    }
                 }
             }
 
@@ -77,10 +89,18 @@ class OpacityModifier(context: Context) : ModPack(context) {
             .runAfter { param ->
                 if (recentsBackgroundOpacity < 0) return@runAfter
 
-                param.result = ColorUtils.setAlphaComponent(
-                    param.result as Int,
-                    recentsBackgroundOpacity
-                )
+                if (param.result is Int) {
+                    param.result = ColorUtils.setAlphaComponent(
+                        param.result as Int,
+                        recentsBackgroundOpacity
+                    )
+                } else {
+                    param.result = getScrimColors(
+                        param.result,
+                        scrimColorsClass!!,
+                        recentsBackgroundOpacity
+                    )
+                }
             }
 
         quickSwitchStateClass
@@ -96,10 +116,18 @@ class OpacityModifier(context: Context) : ModPack(context) {
                 val currentResult = param.result as Int
 
                 if (currentResult != Color.TRANSPARENT && !isTaskbarPresentInApps) {
-                    param.result = ColorUtils.setAlphaComponent(
-                        param.result as Int,
-                        recentsBackgroundOpacity
-                    )
+                    if (param.result is Int) {
+                        param.result = ColorUtils.setAlphaComponent(
+                            param.result as Int,
+                            recentsBackgroundOpacity
+                        )
+                    } else {
+                        param.result = getScrimColors(
+                            param.result,
+                            scrimColorsClass!!,
+                            recentsBackgroundOpacity
+                        )
+                    }
                 }
             }
 
@@ -108,10 +136,18 @@ class OpacityModifier(context: Context) : ModPack(context) {
             .runAfter { param ->
                 if (recentsBackgroundOpacity < 0) return@runAfter
 
-                param.result = ColorUtils.setAlphaComponent(
-                    param.result as Int,
-                    recentsBackgroundOpacity
-                )
+                if (param.result is Int) {
+                    param.result = ColorUtils.setAlphaComponent(
+                        param.result as Int,
+                        recentsBackgroundOpacity
+                    )
+                } else {
+                    param.result = getScrimColors(
+                        param.result,
+                        scrimColorsClass!!,
+                        recentsBackgroundOpacity
+                    )
+                }
             }
 
         hintStateClass
@@ -119,10 +155,18 @@ class OpacityModifier(context: Context) : ModPack(context) {
             .runAfter { param ->
                 if (recentsBackgroundOpacity < 0) return@runAfter
 
-                param.result = ColorUtils.setAlphaComponent(
-                    param.result as Int,
-                    recentsBackgroundOpacity
-                )
+                if (param.result is Int) {
+                    param.result = ColorUtils.setAlphaComponent(
+                        param.result as Int,
+                        recentsBackgroundOpacity
+                    )
+                } else {
+                    param.result = getScrimColors(
+                        param.result,
+                        scrimColorsClass!!,
+                        recentsBackgroundOpacity
+                    )
+                }
             }
 
         val recentsViewClass = findClass("com.android.quickstep.views.RecentsView")
@@ -144,5 +188,24 @@ class OpacityModifier(context: Context) : ModPack(context) {
                     }
                 )
             }
+    }
+
+    private fun getScrimColors(
+        scrimColors: Any,
+        scrimColorsClass: Class<*>,
+        backgroundOpacity: Int
+    ): Any {
+        val backgroundColor = scrimColors.callMethod("getBackgroundColor") as Int
+        val foregroundColor = scrimColors.callMethod("getForegroundColor") as Int
+
+        return scrimColorsClass
+            .getDeclaredConstructor(
+                Int::class.javaPrimitiveType,
+                Int::class.javaPrimitiveType
+            )
+            .newInstance(
+                ColorUtils.setAlphaComponent(backgroundColor, backgroundOpacity),
+                foregroundColor
+            )
     }
 }
